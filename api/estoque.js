@@ -6,8 +6,16 @@ import { aplicar, estadoInicial, normalizar } from "../lib/regras.js";
 const KEY = "dajuh:estoque";
 const KEY_VER = "dajuh:estoque:versao";
 
-const REDIS_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const REDIS_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+// Procura as chaves do banco com qualquer prefixo (KV_, STORAGE_, UPSTASH_REDIS_...)
+function acharVar(...finais) {
+  for (const fim of finais) {
+    const nome = Object.keys(process.env).find((k) => k.endsWith(fim) && process.env[k]);
+    if (nome) return process.env[nome];
+  }
+  return undefined;
+}
+const REDIS_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || acharVar("_REST_API_URL", "_REDIS_REST_URL", "_REST_URL");
+const REDIS_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || acharVar("_REST_API_TOKEN", "_REDIS_REST_TOKEN", "_REST_TOKEN");
 const SENHA = process.env.SENHA;
 
 async function redis(cmd) {
@@ -44,7 +52,11 @@ async function gravar(estado, versaoAnterior) {
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
-  if (!REDIS_URL || !REDIS_TOKEN) return res.status(500).json({ erro: "Banco de dados não configurado na Vercel (Upstash Redis)." });
+  if (!REDIS_URL || !REDIS_TOKEN) {
+    // Mostra só os NOMES das variáveis encontradas (nunca os valores), para ajudar a achar o problema
+    const nomes = Object.keys(process.env).filter((k) => /KV|REDIS|UPSTASH|STORAGE|SENHA/i.test(k)).sort();
+    return res.status(500).json({ erro: "Banco de dados não configurado na Vercel (Upstash Redis). Variáveis encontradas: " + (nomes.join(", ") || "nenhuma") + ". Se você acabou de conectar o banco, faça o Redeploy." });
+  }
   if (!SENHA) return res.status(500).json({ erro: "Configure a variável SENHA na Vercel." });
   if (req.headers["x-senha"] !== SENHA) return res.status(401).json({ erro: "Senha incorreta" });
 
