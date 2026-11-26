@@ -340,14 +340,11 @@ nav.baixo button.ativa{color:var(--vermelho)}
     <label>Senha<input type="password" id="senha" autocomplete="current-password"></label>
     <div class="erro-msg" id="erroLogin"></div>
     <button class="btn" type="submit">Entrar</button>
-    <button class="btn sec" type="button" id="entrarDemo">Ver demonstração</button>
-    <p class="dica">Na demonstração os dados ficam só neste aparelho.</p>
   </form>
 </div>
 
 <!-- ============ SISTEMA ============ -->
 <div id="app" class="hidden">
-  <div class="faixa-demo hidden" id="faixaDemo">MODO DEMONSTRAÇÃO · os dados ficam só neste aparelho</div>
   <header>
     <div class="topo">
       <div class="marca">Da Juh<small>Confeitaria</small></div>
@@ -762,7 +759,10 @@ const ls = {
   del(k) { try { localStorage.removeItem(k); } catch {} },
 };
 let senha = ls.get("dajuh_senha") || "";
-let demo = senha === "__demo__";
+// O modo demonstração foi retirado: quem estava nele volta para a tela de senha
+if (senha === "__demo__") { senha = ""; ls.del("dajuh_senha"); }
+ls.del("dajuh_demo");
+let demo = false;
 let estado = { produtos: [], movs: [], vendas: [], caixas: [] };
 let aba = "inicio";
 let consAno = new Date().getFullYear(), consMeses = new Set();
@@ -836,7 +836,7 @@ async function api(metodo, corpo) {
     headers: { "Content-Type": "application/json", "x-senha": senha },
     body: corpo ? JSON.stringify(corpo) : undefined,
   });
-  const j = await r.json().catch(() => ({ erro: r.status === 404 ? "Servidor não encontrado. Publique na Vercel ou use a demonstração." : "Resposta inválida do servidor" }));
+  const j = await r.json().catch(() => ({ erro: r.status === 404 ? "Servidor não encontrado. Abra o sistema pelo endereço da Vercel." : "Resposta inválida do servidor" }));
   if (r.status === 401) { sair(); throw new Error("Senha incorreta"); }
   if (!r.ok) throw new Error(j.erro || "Erro no servidor");
   return j;
@@ -1852,20 +1852,12 @@ $("#formLogin").onsubmit = async (e) => {
     iniciar();
   } catch (err) {
     $("#telaLogin").classList.remove("hidden");
-    $("#erroLogin").textContent = err.message === "Failed to fetch" ? "Sem conexão com o servidor. Use a demonstração para testar." : err.message;
+    $("#erroLogin").textContent = err.message === "Failed to fetch" ? "Sem conexão com o servidor. Confira a internet e tente de novo." : err.message;
   }
-};
-$("#entrarDemo").onclick = () => {
-  demo = true; senha = "__demo__"; ls.set("dajuh_senha", senha);
-  try { estado = normalizar(JSON.parse(ls.get("dajuh_demo")) || estadoInicial(PRODUTOS_INICIAIS)); } catch { estado = estadoInicial(PRODUTOS_INICIAIS); }
-  iniciar();
 };
 
 function iniciar() {
   $("#telaLogin").classList.add("hidden"); $("#app").classList.remove("hidden");
-  $("#faixaDemo").classList.toggle("hidden", !demo);
-  document.body.classList.toggle("tem-demo", demo);
-  if (demo) setSync(true, "Demonstração");
   $("#movData").value = agoraLocal();
   irPara(aba); render(); carregar(true);
 }

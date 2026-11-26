@@ -36,10 +36,6 @@ Abra o endereço do site (algo como `seu-projeto.vercel.app`), digite a senha e 
 - **Produtos:** cadastre, edite ou exclua produtos, com preço, estoque inicial e estoque mínimo.
 - **Cópia de segurança** (botão ⚙️ Configurações, no topo): **Baixar cópia completa** salva um arquivo `.json` com tudo. **Restaurar cópia** volta o sistema para o que está no arquivo (substitui tudo). Recomendado: baixar uma cópia por semana e guardar no Google Drive.
 
-## Modo demonstração
-
-Na tela de entrada, o botão **Ver demonstração** abre o sistema sem servidor, com os dados guardados só no aparelho. Serve para testar ou ajustar o visual antes de publicar.
-
 ## Para mudar o visual
 
 No começo do `index.html` ficam as cores (`--vermelho`, `--rosa`, etc.). Os textos das telas ficam no meio do arquivo, cada aba marcada com um comentário `ABA VENDAS`, `ABA ESTOQUE`, etc. Se mudar alguma regra (bloco REGRAS dentro do `index.html`), faça a mesma mudança em `lib/regras.js`, que é o que o servidor usa.
