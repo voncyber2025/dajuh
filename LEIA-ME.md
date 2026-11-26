@@ -26,12 +26,15 @@ Abra o endereço do site (algo como `seu-projeto.vercel.app`), digite a senha e 
 
 ## Como usar
 
+- **Menu (página inicial):** ao entrar aparece o menu. No computador, o logo da Da Juh no centro com os botões em volta; no celular, botões grandes em grade. Em todas as páginas, o botão **☰ Menu** no topo volta para ele.
+- **Consolidado:** painel de faturamento com filtros de ano e mês (pode marcar vários meses): faturamento, vendas, ticket médio, itens, canceladas, evolução mês a mês, participação por categoria, faturamento por produto, formas de pagamento e Top 3.
 - **Vendas:** abra o caixa informando o troco inicial. Toque nos produtos para montar a venda, escolha a forma de pagamento (Dinheiro, Pix, Débito, Crédito ou Outro) e confirme. No dinheiro, o sistema calcula o troco. Cada venda já dá baixa no estoque. No fim do dia, toque em **Fechar caixa** e informe quanto dinheiro tem na gaveta: o sistema mostra se sobrou ou faltou.
 - **Folga:** com o caixa fechado, toque em "Hoje não vou abrir · marcar folga". Também dá para marcar qualquer dia pela aba Fechamento (visão Dia ou pelo calendário do mês).
 - **Estoque:** veja tudo por categoria. **+** dá entrada de 1 unidade; **−** abre a saída com motivo.
 - **Movimentar:** entradas (produção/compra), saídas com motivo (**Venda, Perda, Consumo, Outro**) e **Contagem**, mais o histórico.
 - **Fechamento:** relatório do **dia, semana (segunda a domingo) ou mês**: vendas efetivadas e canceladas (com a lista de cada uma), faturamento e comparação com o período anterior, vendas por forma de pagamento e por categoria, mais vendidos, perdas, caixas do período e estoque por produto. No mês aparece um calendário com o faturamento de cada dia e as folgas. Dá para imprimir/salvar em PDF ou baixar para o Excel.
 - **Produtos:** cadastre, edite ou exclua produtos, com preço, estoque inicial e estoque mínimo.
+- **Cópia de segurança** (botão ⚙️ Configurações, no topo): **Baixar cópia completa** salva um arquivo `.json` com tudo. **Restaurar cópia** volta o sistema para o que está no arquivo (substitui tudo). Recomendado: baixar uma cópia por semana e guardar no Google Drive.
 
 ## Modo demonstração
 

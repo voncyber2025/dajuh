@@ -190,8 +190,84 @@ details[open] summary{margin-bottom:8px}
 .legenda{display:flex;gap:12px;font-size:12px;color:var(--suave);margin-top:8px;flex-wrap:wrap}
 .legenda i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 
+/* ============ BOTÃO MENU NO TOPO ============ */
+.btn-menu{border:0;background:rgba(255,255,255,.16);color:#fff;font-weight:800;border-radius:999px;padding:7px 14px;font-size:14px;margin-left:10px;white-space:nowrap}
+.btn-menu:hover{background:rgba(255,255,255,.26)}
+.btn-config{border:0;background:rgba(255,255,255,.16);border-radius:50%;width:34px;height:34px;font-size:17px;display:grid;place-items:center;flex:0 0 auto}
+.btn-config:hover,.btn-config.ativa{background:rgba(255,255,255,.3)}
+.titulo-pag{font-weight:800;font-size:15px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ============ PÁGINA INICIAL (MENU) ============ */
+section[data-aba=inicio]{display:flex;align-items:center;justify-content:center}
+.roda{position:relative;width:100%}
+.logo-centro{display:none}
+.mbtn{border:0;background:#fff;border-radius:18px;box-shadow:var(--sombra);display:grid;align-content:center;justify-items:center;gap:4px;padding:10px;text-align:center;transition:transform .12s, box-shadow .12s}
+.mbtn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(139,13,35,.16)}
+.mbtn .ic{font-size:30px;line-height:1}
+.mbtn b{font-size:16px;color:var(--vermelho)}
+.mbtn small{font-size:11.5px;color:var(--suave);font-weight:700;line-height:1.25}
+/* celular: grade 2 x 3 que cabe na tela */
+@media (max-width:819px){
+  body.na-inicio main{padding-bottom:0}
+  .sync span{display:none}
+  .kpis .kpi:last-child{grid-column:span 2}
+  .roda{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:10px;height:100%}
+  .mbtn{position:static!important;height:100%}
+}
+/* computador: logo no centro e botões em volta */
+@media (min-width:820px){
+  body.na-inicio main{padding-bottom:0}
+  .roda{width:760px;height:620px}
+  .logo-centro{display:block;position:absolute;left:50%;top:50%;width:360px;height:290px;margin:-150px 0 0 -180px}
+  .logo-nuvem{width:100%;height:100%;overflow:visible}
+  .ln-juh{font-family:"Dancing Script",cursive;font-weight:700;font-size:80px;fill:#b3122e;stroke:#fff;stroke-width:1.5;paint-order:stroke}
+  .ln-conf{font-family:"Dancing Script",cursive;font-weight:700;font-size:50px;fill:url(#ouro)}
+  .cupcake{position:absolute;left:-26px;top:118px;font-size:50px;transform:rotate(-12deg);filter:drop-shadow(0 4px 6px rgba(139,13,35,.25))}
+  .mbtn{position:absolute;width:160px;height:120px;margin:-60px 0 0 -80px}
+}
+
+/* ============ CONSOLIDADO ============ */
+.cons-filtros{display:grid;gap:6px;margin-bottom:10px}
+.cons-filtros .rot{font-size:11px;font-weight:800;color:var(--suave);text-transform:uppercase;letter-spacing:.04em;margin-right:4px;align-self:center}
+.cons-filtros .linha{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
+.kpi{background:linear-gradient(135deg,var(--vermelho),var(--vermelho-esc));color:#fff;border-radius:var(--raio);padding:10px 12px;box-shadow:var(--sombra);display:flex;gap:10px;align-items:center}
+.kpi .ic{font-size:24px;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.15);display:grid;place-items:center;flex:0 0 auto}
+.kpi b{display:block;font-size:19px;line-height:1.1}
+.kpi span{font-size:10.5px;font-weight:800;opacity:.85;text-transform:uppercase;letter-spacing:.04em}
+.kpi em{display:block;font-style:normal;font-size:11px;opacity:.9;font-weight:700}
+.painel{display:grid;gap:10px}
+.painel .card h3{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--vermelho);margin-bottom:8px}
+.grafico svg{display:block;width:100%;height:auto;overflow:visible}
+.grafico .eixo{fill:var(--suave);font-size:11px;font-weight:700}
+.grafico .rot-val{fill:var(--texto);font-size:11px;font-weight:800}
+.grafico .grade{stroke:var(--linha);stroke-width:1}
+.dica-g{position:fixed;z-index:80;background:var(--texto);color:#fff;font-size:12px;font-weight:700;padding:6px 9px;border-radius:8px;pointer-events:none;white-space:nowrap;box-shadow:var(--sombra)}
+.rosca-wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center}
+.rosca-wrap svg{width:170px;height:170px;flex:0 0 auto}
+.legenda-c{display:grid;gap:5px;font-size:12.5px;flex:1;min-width:170px}
+.legenda-c div{display:flex;gap:6px;align-items:center}
+.legenda-c i{width:10px;height:10px;border-radius:3px;flex:0 0 auto}
+.legenda-c span{flex:1}
+.hbar{display:grid;grid-template-columns:minmax(90px,40%) 1fr;gap:3px 8px;align-items:center;font-size:12px}
+.hbar .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right;color:var(--texto);font-weight:700}
+.hbar .t{display:flex;align-items:center;gap:6px}
+.hbar .t i{display:block;height:12px;background:var(--vermelho);border-radius:0 4px 4px 0;min-width:2px}
+.hbar .t b{font-size:11.5px;white-space:nowrap}
+.podio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-items:end;text-align:center}
+.podio .p{border-radius:12px;padding:8px 4px;background:var(--creme)}
+.podio .p .med{font-size:26px}
+.podio .p b{display:block;font-size:12.5px;line-height:1.2;margin:2px 0}
+.podio .p span{font-size:11.5px;color:var(--suave);font-weight:700}
+.podio .p1{background:#fff4d6;padding-top:16px}
+@media (min-width:820px){
+  .kpis{grid-template-columns:repeat(5,1fr)}
+  .painel{grid-template-columns:repeat(3,1fr)}
+  .painel .g2{grid-column:span 2}
+}
+
 /* Navegação inferior (celular) */
-nav.baixo{position:fixed;left:0;right:0;bottom:0;background:#fff;display:grid;grid-template-columns:repeat(5,1fr);box-shadow:0 -2px 14px rgba(139,13,35,.12);padding-bottom:env(safe-area-inset-bottom);z-index:30}
+nav.baixo{position:fixed;left:0;right:0;bottom:0;background:#fff;display:grid;grid-template-columns:repeat(6,1fr);box-shadow:0 -2px 14px rgba(139,13,35,.12);padding-bottom:env(safe-area-inset-bottom);z-index:30}
 nav.baixo button{border:0;background:transparent;padding:6px 2px 7px;font-size:10.5px;font-weight:800;color:var(--suave);display:grid;gap:2px;justify-items:center}
 nav.baixo button .ic{font-size:18px;line-height:1}
 nav.baixo button.ativa{color:var(--vermelho)}
@@ -225,7 +301,6 @@ nav.baixo button.ativa{color:var(--vermelho)}
 
 /* ============ COMPUTADOR ============ */
 @media (min-width:820px){
-  nav.abas{display:flex}
   nav.baixo,.barra-carrinho,.fundo-c{display:none!important}
   main{padding-bottom:40px}
   .resumo{gap:10px;margin-bottom:14px}
@@ -276,14 +351,46 @@ nav.baixo button.ativa{color:var(--vermelho)}
   <header>
     <div class="topo">
       <div class="marca">Da Juh<small>Confeitaria</small></div>
-      <nav class="abas" id="abasTopo"></nav>
+      <button class="btn-menu" id="btnMenu" data-ir="inicio">☰ Menu</button>
+      <span class="titulo-pag" id="tituloPag"></span>
       <div class="sync" id="sync"><i></i><span>Sincronizado</span></div>
+      <button class="btn-config" id="btnConfig" data-ir="config" aria-label="Configurações" title="Configurações">⚙️</button>
     </div>
   </header>
 
   <main>
+    <!-- ============ PÁGINA INICIAL (MENU) ============ -->
+    <section data-aba="inicio">
+      <div class="roda" id="roda">
+        <!-- Logo central (igual ao do cardápio: nuvem com borda dourada, coroa e corações) -->
+        <div class="logo-centro"><svg class="logo-nuvem" viewBox="0 0 360 290" role="img" aria-label="Da Juh Confeitaria">
+          <defs>
+            <linearGradient id="ouro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d27a"/><stop offset=".5" stop-color="#d4a23a"/><stop offset="1" stop-color="#a8761c"/></linearGradient>
+            <radialGradient id="creme" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#fbeee4"/></radialGradient>
+            <filter id="sombraL" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#8a0d23" flood-opacity=".22"/></filter>
+          </defs>
+          <path d="M180.0,58.0A28.9,28.9 0 0 1 237.4,65.0A26.3,26.3 0 0 1 286.1,84.9A22.1,22.1 0 0 1 318.6,114.8A18.5,18.5 0 0 1 330.0,150.0A18.5,18.5 0 0 1 318.6,185.2A22.1,22.1 0 0 1 286.1,215.1A26.3,26.3 0 0 1 237.4,235.0A28.9,28.9 0 0 1 180.0,242.0A28.9,28.9 0 0 1 122.6,235.0A26.3,26.3 0 0 1 73.9,215.1A22.1,22.1 0 0 1 41.4,185.2A18.5,18.5 0 0 1 30.0,150.0A18.5,18.5 0 0 1 41.4,114.8A22.1,22.1 0 0 1 73.9,84.9A26.3,26.3 0 0 1 122.6,65.0A28.9,28.9 0 0 1 180.0,58.0Z" fill="url(#creme)" stroke="url(#ouro)" stroke-width="7" filter="url(#sombraL)"/>
+          <path d="M180.0,69.0A26.6,26.6 0 0 1 232.8,75.2A24.0,24.0 0 0 1 277.6,92.7A19.9,19.9 0 0 1 307.5,119.0A16.4,16.4 0 0 1 318.0,150.0A16.4,16.4 0 0 1 307.5,181.0A19.9,19.9 0 0 1 277.6,207.3A24.0,24.0 0 0 1 232.8,224.8A26.6,26.6 0 0 1 180.0,231.0A26.6,26.6 0 0 1 127.2,224.8A24.0,24.0 0 0 1 82.4,207.3A19.9,19.9 0 0 1 52.5,181.0A16.4,16.4 0 0 1 42.0,150.0A16.4,16.4 0 0 1 52.5,119.0A19.9,19.9 0 0 1 82.4,92.7A24.0,24.0 0 0 1 127.2,75.2A26.6,26.6 0 0 1 180.0,69.0Z" fill="none" stroke="#e7c27a" stroke-width="1.5" opacity=".8"/>
+          <!-- coroa -->
+          <g transform="translate(180 52)">
+            <path d="M-38,14 L-44,-22 L-20,-2 L0,-34 L20,-2 L44,-22 L38,14 Z" fill="url(#ouro)" stroke="#a8761c" stroke-width="2" stroke-linejoin="round"/>
+            <rect x="-40" y="12" width="80" height="12" rx="4" fill="url(#ouro)" stroke="#a8761c" stroke-width="2"/>
+            <circle cx="0" cy="-34" r="5" fill="#f3d27a" stroke="#a8761c" stroke-width="1.5"/><circle cx="-44" cy="-22" r="4" fill="#f3d27a" stroke="#a8761c" stroke-width="1.5"/><circle cx="44" cy="-22" r="4" fill="#f3d27a" stroke="#a8761c" stroke-width="1.5"/>
+            <circle cx="0" cy="18" r="3.5" fill="#b3122e"/><circle cx="-22" cy="18" r="2.6" fill="#b3122e"/><circle cx="22" cy="18" r="2.6" fill="#b3122e"/>
+          </g>
+          <text x="180" y="158" text-anchor="middle" class="ln-juh">Da Juh</text>
+          <text x="180" y="208" text-anchor="middle" class="ln-conf">Confeitaria</text>
+          <path d="M92,224 C150,238 220,236 262,222" fill="none" stroke="#b3122e" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M268,214 c-4,-6 -12,-4 -11,2 c1,5 8,8 11,12 c3,-4 10,-7 11,-12 c1,-6 -7,-8 -11,-2z" fill="none" stroke="#b3122e" stroke-width="2"/>
+          <!-- corações -->
+          <g fill="#c8102e"><path d="M30,80 c-5,-8 -16,-5 -15,3 c1,7 10,11 15,16 c5,-5 14,-9 15,-16 c1,-8 -10,-11 -15,-3z"/><path d="M332,70 c-4,-6 -12,-4 -11,2 c1,5 8,8 11,12 c3,-4 10,-7 11,-12 c1,-6 -7,-8 -11,-2z"/><path d="M318,250 c-5,-8 -16,-5 -15,3 c1,7 10,11 15,16 c5,-5 14,-9 15,-16 c1,-8 -10,-11 -15,-3z"/></g>
+          <g fill="url(#ouro)"><path d="M58,250 c-4,-6 -12,-4 -11,2 c1,5 8,8 11,12 c3,-4 10,-7 11,-12 c1,-6 -7,-8 -11,-2z"/><path d="M300,30 c-3,-5 -9,-3 -8,2 c1,4 6,6 8,9 c2,-3 7,-5 8,-9 c1,-5 -5,-7 -8,-2z"/><path d="M48,30 c-3,-5 -9,-3 -8,2 c1,4 6,6 8,9 c2,-3 7,-5 8,-9 c1,-5 -5,-7 -8,-2z"/></g>
+        </svg><span class="cupcake">🧁</span></div>
+      </div>
+    </section>
+
     <!-- ============ ABA VENDAS ============ -->
-    <section data-aba="vendas">
+    <section data-aba="vendas" class="hidden">
       <!-- Caixa fechado -->
       <div id="caixaFechado" class="hidden">
         <div class="duas-col">
@@ -440,6 +547,30 @@ nav.baixo button.ativa{color:var(--vermelho)}
       <div id="relatorio"></div>
     </section>
 
+    <!-- ============ ABA CONSOLIDADO ============ -->
+    <section data-aba="consolidado" class="hidden">
+      <div class="card cons-filtros">
+        <div class="linha"><span class="rot">Ano</span><span class="chips" id="consAnos"></span></div>
+        <div class="linha"><span class="rot">Mês</span><span class="chips" id="consMeses"></span></div>
+      </div>
+      <div id="consPainel"></div>
+    </section>
+
+    <!-- ============ CONFIGURAÇÕES ============ -->
+    <section data-aba="config" class="hidden" style="max-width:640px;margin:0 auto">
+      <div class="card">
+        <h3>Cópia de segurança</h3>
+        <p class="dica" style="margin-bottom:10px">Baixa um arquivo com <b>tudo</b>: produtos, vendas, caixas, movimentos e folgas. Guarde no Google Drive ou no computador. Para voltar os dados, use "Restaurar cópia".</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="btn" id="btnBackup">⬇ Baixar cópia completa</button>
+          <button type="button" class="btn sec" id="btnRestaurar">⤒ Restaurar cópia</button>
+          <input type="file" id="arqRestaurar" accept=".json,application/json" class="hidden">
+        </div>
+        <p class="dica" id="ultimoBackup" style="margin-top:8px"></p>
+      </div>
+      <p class="dica" style="margin-top:20px;text-align:center"><a href="#" id="sair" style="color:var(--suave)">Sair deste aparelho</a></p>
+    </section>
+
     <!-- ============ ABA PRODUTOS ============ -->
     <section data-aba="produtos" class="hidden">
       <div class="filtros">
@@ -447,7 +578,6 @@ nav.baixo button.ativa{color:var(--vermelho)}
         <button class="btn" id="novoProd">+ Novo produto</button>
       </div>
       <div id="listaProd"></div>
-      <p class="dica" style="margin-top:20px;text-align:center"><a href="#" id="sair" style="color:var(--suave)">Sair deste aparelho</a></p>
     </section>
   </main>
 
@@ -457,6 +587,7 @@ nav.baixo button.ativa{color:var(--vermelho)}
 <div class="fundo hidden" id="fundo"><div class="modal" id="modal"></div></div>
 <div class="fundo hidden" id="fundo2" style="z-index:70"><div class="modal" id="modal2" style="max-width:400px"></div></div>
 <div class="toast hidden" id="toast"></div>
+<div class="dica-g hidden" id="dicaG"></div>
 
 <script>
 /* =====================================================================
@@ -579,6 +710,12 @@ function aplicar(e, op) {
       v.canceladaEm = agora;
       break;
     }
+    case "restaurar": {
+      const n = op.estado || {};
+      if (!Array.isArray(n.produtos) || !Array.isArray(n.vendas) || !Array.isArray(n.movs) || !Array.isArray(n.caixas)) throw new Error("Arquivo de cópia inválido");
+      e.produtos = n.produtos; e.movs = n.movs; e.vendas = n.vendas; e.caixas = n.caixas; e.folgas = Array.isArray(n.folgas) ? n.folgas : [];
+      break;
+    }
     case "marcarFolga": {
       const dia = String(op.data || "");
       if (!/^\d{4}-\d{2}-\d{2}$/.test(dia)) throw new Error("Data inválida");
@@ -602,13 +739,17 @@ const PRODUTOS_INICIAIS = [{ "id": "p1", "cat": "Doces Especiais", "nome": "Case
 /* =====================================================================
    CONFIGURAÇÃO
    ===================================================================== */
+// Páginas do sistema (a ordem aqui é a ordem dos botões no menu)
 const ABAS = [
   { id: "vendas", nome: "Vendas", ic: "💰" },
   { id: "estoque", nome: "Estoque", ic: "📦" },
   { id: "movimentar", nome: "Movimentar", ic: "⇅" },
-  { id: "fechamento", nome: "Fechamento", ic: "📊" },
+  { id: "fechamento", nome: "Fechamento", ic: "🧾" },
+  { id: "consolidado", nome: "Consolidado", ic: "📊" },
   { id: "produtos", nome: "Produtos", ic: "🧁" },
 ];
+// Barra de baixo do celular (cabe 6 botões)
+const ABAS_BAIXO = ["inicio", "vendas", "estoque", "movimentar", "fechamento", "consolidado"];
 const API = "/api/estoque";
 const ATUALIZAR_A_CADA = 30000; // 30 segundos
 
@@ -623,7 +764,8 @@ const ls = {
 let senha = ls.get("dajuh_senha") || "";
 let demo = senha === "__demo__";
 let estado = { produtos: [], movs: [], vendas: [], caixas: [] };
-let aba = "vendas";
+let aba = "inicio";
+let consAno = new Date().getFullYear(), consMeses = new Set();
 let filtroSit = "todos", filtroCat = "todas", filtroHist = "todos";
 let tipoMov = "entrada", motivoMov = "perda";
 let vendaCat = "todas", carrinho = [], pagamento = null;
@@ -772,7 +914,7 @@ function produtosOrdenados() {
    DESENHAR TELAS
    ===================================================================== */
 function render() {
-  renderVendas(); renderEstoque(); renderMovForm(); renderHist(); renderFechamento(); renderProd();
+  mostrarUltimoBackup(); renderInicio(); renderVendas(); renderEstoque(); renderMovForm(); renderHist(); renderFechamento(); renderConsolidado(); renderProd();
 }
 
 /* ---------------- VENDAS ---------------- */
@@ -1250,6 +1392,34 @@ function calendarioMes(P) {
     <div class="legenda"><span><i style="background:var(--azul-bg)"></i>Folga</span><span><i style="background:var(--creme)"></i>Dia normal</span><span>Toque num dia para ver o fechamento ou marcar folga</span></div></div>`;
 }
 
+/* ---------------- CÓPIA DE SEGURANÇA ---------------- */
+function baixarArquivo(nome, conteudo, tipo) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([conteudo], { type: tipo }));
+  a.download = nome; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+function mostrarUltimoBackup() {
+  const d = ls.get("dajuh_ultimo_backup");
+  $("#ultimoBackup").textContent = d ? "Última cópia baixada neste aparelho: " + dataHora(d) : "Nenhuma cópia baixada neste aparelho ainda.";
+}
+function baixarBackup() {
+  const agora = new Date();
+  const copia = { app: "dajuh-estoque", formato: 1, geradoEm: agora.toISOString(), estado };
+  baixarArquivo(`dajuh-copia-${diaKey(agora)}.json`, JSON.stringify(copia), "application/json");
+  ls.set("dajuh_ultimo_backup", agora.toISOString()); mostrarUltimoBackup();
+  toast("Cópia baixada");
+}
+async function restaurarBackup(arquivo) {
+  let copia;
+  try { copia = JSON.parse(await arquivo.text()); } catch { return toast("Arquivo inválido"); }
+  const n = copia && copia.estado;
+  if (!copia || copia.app !== "dajuh-estoque" || !n || !Array.isArray(n.produtos)) return toast("Esse arquivo não é uma cópia do sistema Da Juh");
+  const ok = await confirmar(`Restaurar a cópia de ${dataHora(copia.geradoEm)}? Ela tem ${n.produtos.length} produtos, ${(n.vendas || []).length} vendas e ${(n.caixas || []).length} caixas. TUDO o que está no sistema agora será substituído por ela.`, "Restaurar");
+  if (!ok) return;
+  await enviar({ tipo: "restaurar", estado: normalizar(n) }, "Cópia restaurada");
+}
+
 function baixarCSV() {
   const { P, R } = ultimoRelatorio;
   const n = (v) => String(r2c(v)).replace(".", ",");
@@ -1286,6 +1456,176 @@ function baixarCSV() {
   a.download = `fechamento-${perTipo}-${P.ini.toISOString().slice(0, 10)}.csv`;
   a.click();
 }
+
+/* ---------------- PÁGINA INICIAL ---------------- */
+// A página inicial ocupa exatamente o espaço livre da tela (sem rolagem)
+function ajustarInicio() {
+  const sec = document.querySelector("section[data-aba=inicio]");
+  if (!sec || aba !== "inicio") return;
+  const topo = document.querySelector("header").getBoundingClientRect().bottom;
+  const nav = $("#abasBaixo"), alturaNav = getComputedStyle(nav).display === "none" ? 0 : nav.offsetHeight;
+  sec.style.height = Math.max(320, window.innerHeight - topo - alturaNav - 20) + "px";
+}
+window.addEventListener("resize", ajustarInicio);
+function renderInicio() {
+  const s = saldos(), c = caixaAberto(estado);
+  const hoje = diaKey(new Date());
+  const vendasHoje = estado.vendas.filter((v) => !v.cancelada && diaKey(new Date(v.data)) === hoje);
+  const repor = estado.produtos.filter((p) => situacao(s[p.id], p.min) !== "ok").length;
+  const info = {
+    vendas: c ? `Caixa aberto · ${brl(vendasHoje.reduce((t, v) => t + v.total, 0))} hoje` : (ehFolga(hoje) ? "Hoje: folga 🌙" : "Caixa fechado"),
+    estoque: repor ? `${repor} para repor` : "Tudo em dia",
+    movimentar: "Entradas, saídas e contagem",
+    fechamento: "Dia, semana e mês",
+    consolidado: "Painel de faturamento",
+    produtos: `${estado.produtos.length} produtos cadastrados`,
+  };
+  const n = ABAS.length, RX = 300, RY = 245; // distância dos botões até o centro (computador)
+  const botoes = ABAS.map((a, i) => {
+    const ang = (-90 + (360 / n) * i) * Math.PI / 180;
+    const x = 380 + RX * Math.cos(ang), y = 310 + RY * Math.sin(ang);
+    return `<button class="mbtn" data-ir="${a.id}" style="left:${x}px;top:${y}px"><span class="ic">${a.ic}</span><b>${a.nome}</b><small>${esc(info[a.id] || "")}</small></button>`;
+  }).join("");
+  const roda = $("#roda");
+  roda.querySelectorAll(".mbtn").forEach((b) => b.remove());
+  roda.insertAdjacentHTML("beforeend", botoes);
+}
+
+/* ---------------- CONSOLIDADO ---------------- */
+// Cores das categorias (validadas para daltonismo); a 7ª em diante vira "Outros" em cinza
+const CORES_CAT = ["#b3122e", "#0090a8", "#c07d0e", "#5b4fd0", "#d0577a", "#2f7a3a"];
+const COR_OUTROS = "#9a8a8e";
+const MESES = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
+const kBRL = (v) => v >= 1000 ? "R$ " + (v / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + "k" : brl(v).replace(",00", "");
+
+// Todas as vendas efetivadas (do caixa e saídas lançadas como venda)
+function vendasEfetivas() {
+  const mapa = prodPorId(), L = [];
+  for (const v of estado.vendas) if (!v.cancelada)
+    L.push({ data: new Date(v.data), total: v.total, pagamento: v.pagamento, itens: v.itens.map((i) => ({ prodId: i.prodId, nome: i.nome, cat: i.cat, qtd: i.qtd, valor: i.qtd * i.preco })) });
+  for (const m of estado.movs) if (m.movimento === "saida" && (m.motivo || "venda") === "venda") {
+    const p = mapa[m.prodId], val = m.qtd * (m.preco ?? p?.preco ?? 0);
+    L.push({ data: new Date(m.data), total: val, pagamento: "semCaixa", itens: [{ prodId: m.prodId, nome: p?.nome || "(removido)", cat: p?.cat || "—", qtd: m.qtd, valor: val }] });
+  }
+  return L;
+}
+
+function renderConsolidado() {
+  const todas = vendasEfetivas();
+  const anos = [...new Set([new Date().getFullYear(), ...todas.map((v) => v.data.getFullYear())])].sort();
+  $("#consAnos").innerHTML = anos.map((a) => `<button class="chip${a === consAno ? " ativa" : ""}" data-cons-ano="${a}">${a}</button>`).join("");
+  $("#consMeses").innerHTML = `<button class="chip${consMeses.size ? "" : " ativa"}" data-cons-mes="todos">Todos</button>` +
+    MESES.map((m, i) => `<button class="chip${consMeses.has(i) ? " ativa" : ""}" data-cons-mes="${i}">${m}</button>`).join("");
+
+  const doAno = todas.filter((v) => v.data.getFullYear() === consAno);
+  const sel = doAno.filter((v) => !consMeses.size || consMeses.has(v.data.getMonth()));
+  const canc = estado.vendas.filter((v) => { const d = new Date(v.data); return v.cancelada && d.getFullYear() === consAno && (!consMeses.size || consMeses.has(d.getMonth())); });
+
+  const fat = sel.reduce((t, v) => t + v.total, 0);
+  const nVendas = sel.length;
+  const itens = sel.reduce((t, v) => t + v.itens.reduce((a, i) => a + i.qtd, 0), 0);
+  const porMes = Array(12).fill(0); doAno.forEach((v) => (porMes[v.data.getMonth()] += v.total));
+  const porCat = {}, porProd = {}, porPag = {};
+  for (const v of sel) {
+    porPag[v.pagamento] = (porPag[v.pagamento] || 0) + v.total;
+    for (const i of v.itens) {
+      porCat[i.cat] = (porCat[i.cat] || 0) + i.valor;
+      const k = porProd[i.prodId] || (porProd[i.prodId] = { nome: i.nome, qtd: 0, valor: 0 });
+      k.qtd += i.qtd; k.valor += i.valor;
+    }
+  }
+
+  // KPIs
+  const kpi = (ic, val, rot, extra = "") => `<div class="kpi"><div class="ic">${ic}</div><div><b class="num">${val}</b><span>${rot}</span>${extra}</div></div>`;
+  let html = `<div class="kpis">
+    ${kpi("💰", kBRL(fat), "Faturamento")}
+    ${kpi("🛍️", nVendas.toLocaleString("pt-BR"), "Vendas")}
+    ${kpi("🧾", brl(nVendas ? fat / nVendas : 0), "Ticket médio")}
+    ${kpi("🧁", itens.toLocaleString("pt-BR"), "Itens vendidos")}
+    ${kpi("✕", canc.length, "Canceladas", `<em>${brl(canc.reduce((t, v) => t + v.total, 0))}</em>`)}
+  </div><div class="painel">`;
+
+  // Linha: evolução mês a mês
+  html += `<div class="card g2"><h3>Evolução do faturamento · ${consAno}</h3><div class="grafico">${graficoLinha(porMes)}</div></div>`;
+
+  // Rosca por categoria
+  const cats = Object.entries(porCat).sort((a, b) => b[1] - a[1]);
+  const ordemCat = categorias();
+  let fatias = cats.slice(0, 6).map(([c, v]) => ({ nome: c, v, cor: CORES_CAT[ordemCat.indexOf(c) % 6] || COR_OUTROS }));
+  const resto = cats.slice(6).reduce((t, c) => t + c[1], 0);
+  if (resto) fatias.push({ nome: "Outros", v: resto, cor: COR_OUTROS });
+  html += `<div class="card"><h3>Participação por categoria</h3>${fatias.length ? `<div class="rosca-wrap">${graficoRosca(fatias, fat)}
+    <div class="legenda-c">${fatias.map((f) => `<div><i style="background:${f.cor}"></i><span>${esc(f.nome)}</span><b class="num">${Math.round((f.v / fat) * 100)}%</b></div>`).join("")}</div></div>` : '<div class="vazio">Sem vendas no período.</div>'}</div>`;
+
+  // Barras por produto
+  const prods = Object.values(porProd).sort((a, b) => b.valor - a.valor).slice(0, 10);
+  const maxP = Math.max(1, ...prods.map((p) => p.valor));
+  html += `<div class="card"><h3>Faturamento por produto</h3>${prods.length ? `<div class="hbar">${prods.map((p) => `<span class="n" title="${esc(p.nome)}">${esc(p.nome)}</span><span class="t" data-tip="${esc(p.nome)}: ${p.qtd} un. · ${brl(p.valor)}"><i style="width:${(p.valor / maxP) * 75}%"></i><b class="num">${kBRL(p.valor)}</b></span>`).join("")}</div>` : '<div class="vazio">Sem vendas no período.</div>'}</div>`;
+
+  // Formas de pagamento
+  const pags = Object.entries({ ...PAGAMENTOS, semCaixa: "Sem caixa" }).filter(([k]) => porPag[k]).sort((a, b) => porPag[b[0]] - porPag[a[0]]);
+  const maxPg = Math.max(1, ...pags.map(([k]) => porPag[k]));
+  html += `<div class="card"><h3>Formas de pagamento</h3>${pags.length ? `<div class="hbar">${pags.map(([k, n]) => `<span class="n">${n}</span><span class="t" data-tip="${n}: ${brl(porPag[k])} · ${Math.round((porPag[k] / fat) * 100)}%"><i style="width:${(porPag[k] / maxPg) * 75}%"></i><b class="num">${kBRL(porPag[k])}</b></span>`).join("")}</div>` : '<div class="vazio">Sem vendas no período.</div>'}</div>`;
+
+  // Top 3
+  const top = Object.values(porProd).sort((a, b) => b.qtd - a.qtd || b.valor - a.valor).slice(0, 3);
+  const pod = (p, i) => p ? `<div class="p p${i + 1}"><div class="med">${["🥇", "🥈", "🥉"][i]}</div><b>${esc(p.nome)}</b><span>${p.qtd} un. · ${kBRL(p.valor)}</span></div>` : `<div class="p"><div class="med" style="opacity:.3">${["🥇", "🥈", "🥉"][i]}</div><span>—</span></div>`;
+  html += `<div class="card"><h3>Top 3 mais vendidos</h3>${top.length ? `<div class="podio">${pod(top[1], 1)}${pod(top[0], 0)}${pod(top[2], 2)}</div>` : '<div class="vazio">Sem vendas no período.</div>'}</div>`;
+
+  $("#consPainel").innerHTML = html + "</div>";
+}
+
+function graficoLinha(valores) {
+  const celular = window.innerWidth < 820;
+  const W = celular ? 360 : 640, H = celular ? 190 : 210, pe = 34, pd = 14, pt = 26, pb = 26;
+  const max = Math.max(...valores, 1);
+  const passo = (W - pe - pd) / 11;
+  const x = (i) => pe + i * passo, y = (v) => pt + (H - pt - pb) * (1 - v / max);
+  const ultimo = new Date().getFullYear() === consAno ? new Date().getMonth() : 11;
+  const pts = valores.map((v, i) => [x(i), y(v)]).slice(0, ultimo + 1);
+  const iMax = valores.indexOf(Math.max(...valores));
+  let g = "";
+  for (let k = 0; k <= 2; k++) { const yy = pt + ((H - pt - pb) * k) / 2; g += `<line class="grade" x1="${pe}" x2="${W - pd}" y1="${yy}" y2="${yy}"/><text class="eixo" x="${pe - 6}" y="${yy + 4}" text-anchor="end">${kBRL(max * (1 - k / 2)).replace("R$ ", "")}</text>`; }
+  g += `<path d="M${pts.map((p) => p.join(",")).join("L")}" fill="none" stroke="var(--vermelho)" stroke-width="2" stroke-linejoin="round"/>`;
+  valores.forEach((v, i) => {
+    const sel = !consMeses.size || consMeses.has(i);
+    if (i <= ultimo) g += `<circle cx="${x(i)}" cy="${y(v)}" r="${sel ? 5 : 4}" fill="${sel ? "var(--vermelho)" : "#fff"}" stroke="${sel ? "#fff" : "var(--vermelho)"}" stroke-width="2"/>`;
+    if (i <= ultimo && v && (i === iMax || i === ultimo)) g += `<text class="rot-val" x="${x(i)}" y="${y(v) - 10}" text-anchor="middle">${kBRL(v)}</text>`;
+    g += `<text class="eixo" x="${x(i)}" y="${H - 6}" text-anchor="middle" style="${consMeses.has(i) ? "fill:var(--vermelho)" : ""}">${MESES[i]}</text>`;
+    g += `<rect x="${x(i) - passo / 2}" y="0" width="${passo}" height="${H}" fill="transparent" data-tip="${MESES[i]}/${consAno}: ${brl(v)}"/>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Faturamento por mês">${g}</svg>`;
+}
+
+function graficoRosca(fatias, total) {
+  const R = 80, r = 52, C = 85; let a0 = -Math.PI / 2, g = "";
+  const arco = (a1, a2) => {
+    const p = (ang, rr) => [C + rr * Math.cos(ang), C + rr * Math.sin(ang)];
+    const [x1, y1] = p(a1, R), [x2, y2] = p(a2, R), [x3, y3] = p(a2, r), [x4, y4] = p(a1, r);
+    const big = a2 - a1 > Math.PI ? 1 : 0;
+    return `M${x1},${y1}A${R},${R} 0 ${big} 1 ${x2},${y2}L${x3},${y3}A${r},${r} 0 ${big} 0 ${x4},${y4}Z`;
+  };
+  for (const f of fatias) {
+    const a1 = a0 + (f.v / total) * Math.PI * 2;
+    g += fatias.length === 1
+      ? `<circle cx="${C}" cy="${C}" r="${(R + r) / 2}" fill="none" stroke="${f.cor}" stroke-width="${R - r}" data-tip="${esc(f.nome)}: ${brl(f.v)}"/>`
+      : `<path d="${arco(a0, a1)}" fill="${f.cor}" stroke="#fff" stroke-width="2" data-tip="${esc(f.nome)}: ${brl(f.v)} · ${Math.round((f.v / total) * 100)}%"/>`;
+    a0 = a1;
+  }
+  g += `<text x="${C}" y="${C - 2}" text-anchor="middle" style="font-size:16px;font-weight:800;fill:var(--texto)">${kBRL(total)}</text><text x="${C}" y="${C + 15}" text-anchor="middle" style="font-size:10px;font-weight:700;fill:var(--suave)">TOTAL</text>`;
+  return `<svg viewBox="0 0 170 170" role="img" aria-label="Faturamento por categoria">${g}</svg>`;
+}
+
+// Dica ao passar o mouse / tocar nos gráficos
+function mostrarDica(e) {
+  const t = e.target.closest && e.target.closest("[data-tip]"), d = $("#dicaG");
+  if (!t) return d.classList.add("hidden");
+  d.textContent = t.dataset.tip; d.classList.remove("hidden");
+  const x = Math.min(e.clientX + 12, window.innerWidth - d.offsetWidth - 8);
+  d.style.left = x + "px"; d.style.top = Math.max(8, e.clientY - 38) + "px";
+}
+document.addEventListener("mousemove", mostrarDica);
+document.addEventListener("touchstart", (e) => { if (e.touches[0]) mostrarDica({ target: e.target, clientX: e.touches[0].clientX, clientY: e.touches[0].clientY }); }, { passive: true });
 
 /* ---------------- PRODUTOS ---------------- */
 function renderProd() {
@@ -1383,16 +1723,23 @@ function modalProduto(id) {
    ===================================================================== */
 function irPara(id) {
   aba = id;
+  const a = ABAS.find((x) => x.id === id);
+  $("#tituloPag").textContent = a ? a.nome : id === "config" ? "Configurações" : "";
+  $("#btnMenu").classList.toggle("hidden", id === "inicio");
+  document.body.classList.toggle("na-inicio", id === "inicio");
+  setTimeout(ajustarInicio, 0);
   document.querySelectorAll("section[data-aba]").forEach((s) => s.classList.toggle("hidden", s.dataset.aba !== id));
   document.querySelectorAll("[data-ir]").forEach((b) => b.classList.toggle("ativa", b.dataset.ir === id));
   abrirCarrinho(false); atualizarTotais();
   window.scrollTo(0, 0);
 }
-$("#abasBaixo").innerHTML = ABAS.map((a) => `<button data-ir="${a.id}"><span class="ic">${a.ic}</span>${a.nome}</button>`).join("");
-$("#abasTopo").innerHTML = ABAS.map((a) => `<button data-ir="${a.id}">${a.nome}</button>`).join("");
+$("#abasBaixo").innerHTML = ABAS_BAIXO.map((id) => {
+  const a = id === "inicio" ? { nome: "Menu", ic: "☰" } : ABAS.find((x) => x.id === id);
+  return `<button data-ir="${id}"><span class="ic">${a.ic}</span>${a.nome}</button>`;
+}).join("");
 
 document.addEventListener("click", async (e) => {
-  const t = e.target.closest("[data-ir],[data-entrada],[data-saida],[data-abrir],[data-apagar-mov],[data-editar],[data-filtro],[data-add],[data-cq],[data-pag],[data-vc],[data-cancelar-venda],[data-motivo],[data-folga],[data-ir-dia]");
+  const t = e.target.closest("[data-ir],[data-entrada],[data-saida],[data-abrir],[data-apagar-mov],[data-editar],[data-filtro],[data-add],[data-cq],[data-pag],[data-vc],[data-cancelar-venda],[data-motivo],[data-folga],[data-ir-dia],[data-cons-ano],[data-cons-mes]");
   if (!t) return;
   const d = t.dataset;
   if (d.ir) irPara(d.ir);
@@ -1420,6 +1767,12 @@ document.addEventListener("click", async (e) => {
     const k = d.folga;
     if (ehFolga(k)) enviar({ tipo: "desmarcarFolga", data: k }, "Folga desmarcada");
     else enviar({ tipo: "marcarFolga", data: k }, "Dia marcado como folga 🌙");
+  }
+  else if (d.consAno) { consAno = Number(d.consAno); renderConsolidado(); }
+  else if (d.consMes) {
+    if (d.consMes === "todos") consMeses.clear();
+    else { const m = Number(d.consMes); consMeses.has(m) ? consMeses.delete(m) : consMeses.add(m); }
+    renderConsolidado();
   }
   else if (d.irDia !== undefined) { perTipo = "dia"; perOffset = Number(d.irDia); marcarChips("#chipsPeriodo", "p", "dia"); renderFechamento(); window.scrollTo(0, 0); }
 });
@@ -1485,6 +1838,9 @@ function sair() {
   $("#app").classList.add("hidden"); $("#telaLogin").classList.remove("hidden");
 }
 $("#sair").onclick = (e) => { e.preventDefault(); sair(); };
+$("#btnBackup").onclick = baixarBackup;
+$("#btnRestaurar").onclick = () => { $("#arqRestaurar").value = ""; $("#arqRestaurar").click(); };
+$("#arqRestaurar").onchange = (e) => { const f = e.target.files[0]; if (f) restaurarBackup(f); };
 $("#formLogin").onsubmit = async (e) => {
   e.preventDefault();
   senha = $("#senha").value; $("#erroLogin").textContent = "";
@@ -1508,6 +1864,7 @@ $("#entrarDemo").onclick = () => {
 function iniciar() {
   $("#telaLogin").classList.add("hidden"); $("#app").classList.remove("hidden");
   $("#faixaDemo").classList.toggle("hidden", !demo);
+  document.body.classList.toggle("tem-demo", demo);
   if (demo) setSync(true, "Demonstração");
   $("#movData").value = agoraLocal();
   irPara(aba); render(); carregar(true);
