@@ -217,7 +217,7 @@ section[data-aba=inicio]{display:flex;align-items:center;justify-content:center}
 /* computador: logo no centro e botões em volta */
 @media (min-width:820px){
   body.na-inicio main{padding-bottom:0}
-  .roda{width:760px;height:620px}
+  .roda{width:760px;height:620px;flex:0 0 auto;transform-origin:center center}
   .logo-centro{display:grid;place-items:center;position:absolute;left:50%;top:50%;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;background:#fff;box-shadow:0 12px 40px rgba(139,13,35,.18)}
   .logo-centro img{width:92%;height:92%;object-fit:contain}
   .mbtn{position:absolute;width:160px;height:120px;margin:-60px 0 0 -80px}
@@ -356,6 +356,83 @@ section[data-aba=novaEnc] .cd{--cd-topo:52px;--cd-baixo:70px}
 .det-dados div b{display:block;font-size:11px;color:var(--suave);text-transform:uppercase;letter-spacing:.04em}
 .hist{font-size:11.5px;color:var(--suave);margin-top:8px;display:grid;gap:2px}
 .mbtn.largo{grid-column:span 2}
+/* Relatório do dia */
+.rel-cal-topo{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.rel-cal-topo b{flex:1;text-align:center;font-size:15px}
+.rel-cal-topo button{border:0;background:var(--creme);width:34px;height:34px;border-radius:50%;font-size:18px;font-weight:800;color:var(--vermelho)}
+.calendario .d.tem{background:var(--rosa-2);color:var(--vermelho);cursor:pointer}
+.calendario .d.tem small{color:var(--vermelho);font-size:10px}
+.calendario .d.tem.aten{background:#ffe9a8;color:#7a4b00}
+.calendario .d.tem.aten small{color:#7a4b00}
+.calendario .d.sel{outline:3px solid var(--vermelho);outline-offset:-1px}
+.calendario .d{cursor:pointer}
+/* no calendário do relatório: dias sem pedido em letra normal, dias com pedido em negrito */
+#relCal .calendario .d{font-weight:500;color:var(--suave);font-size:13px}
+#relCal .calendario .d.tem{font-weight:900;color:var(--vermelho);font-size:15px}
+#relCal .calendario .d.tem.aten{color:#7a4b00}
+.rel-topo h2{font-family:"Dancing Script",cursive;color:var(--vermelho);font-size:30px;margin:0}
+.rel-topo p{margin:2px 0 10px;color:var(--suave);font-weight:700}
+.rel-enc{background:#fff;border-radius:var(--raio);box-shadow:var(--sombra);padding:12px 14px;margin-bottom:10px;display:grid;grid-template-columns:70px 1fr;gap:4px 12px}
+.rel-enc .hora{grid-row:span 3;background:var(--vermelho);color:#fff;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:18px;text-align:center;line-height:1.1;padding:8px 2px;align-self:start}
+.rel-enc .hora small{display:block;font-size:10px;font-weight:700;opacity:.85}
+.rel-enc .hora.sem{background:var(--suave)}
+.rel-enc .cab{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.rel-enc .cab b{font-size:15px;margin-right:auto}
+.rel-enc .info{font-size:12.5px;color:var(--suave)}
+.rel-enc ul{margin:4px 0 0;padding-left:18px;font-size:13px}
+.rel-enc ul li span{color:var(--suave)}
+.rel-enc .vals{grid-column:2;display:flex;gap:14px;flex-wrap:wrap;font-size:13px;border-top:1px dashed var(--linha);padding-top:6px;margin-top:4px}
+.rel-prod{background:#fff;border-radius:var(--raio);box-shadow:var(--sombra);padding:12px 14px;margin-bottom:12px}
+.rel-prod h3{color:var(--vermelho)}
+.rel-prod .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:4px 18px}
+.rel-prod .l{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid var(--linha);font-size:13px}
+.rel-prod .l b{white-space:nowrap}
+.rel-prod .c{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--dourado);margin:10px 0 2px;grid-column:1/-1}
+.entrada-box{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin-top:8px}
+.entrada-ok{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--texto);white-space:nowrap;cursor:pointer}
+.entrada-ok input{width:22px;height:22px;accent-color:var(--ok)}
+.entrada-box input[type=text]:disabled{opacity:.45}
+.falta{display:grid;gap:3px;background:var(--creme);border-radius:12px;padding:10px 12px;margin-top:8px;font-size:13.5px}
+.falta div{display:flex;justify-content:space-between}
+.falta .f{font-size:17px;border-top:1px dashed var(--linha);padding-top:5px;margin-top:2px}
+/* Quadro (kanban) */
+.vista{display:flex;gap:4px;margin-left:auto}
+.kanban{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:start}
+.kcol.entregue{background:rgba(255,255,255,.4)}
+.kcol.entregue .kcard{opacity:.85}
+.kcol.semana{background:linear-gradient(180deg,#fff4d6,rgba(255,255,255,.6))}
+.kcard .stp{font-size:10.5px;padding:1px 7px;border-radius:999px;font-weight:800;white-space:nowrap}
+.semana-box{background:linear-gradient(135deg,var(--vermelho),var(--vermelho-esc));color:#fff;border-radius:var(--raio);padding:12px 14px;margin-bottom:12px;box-shadow:var(--sombra)}
+.semana-box h3{margin:0 0 8px;font-size:16px;color:#fff}
+.semana-box .dias{display:flex;gap:8px;flex-wrap:wrap}
+.semana-box .dia{background:rgba(255,255,255,.14);border-radius:12px;padding:7px 10px;min-width:110px;cursor:pointer;border:0;color:#fff;text-align:left;font:inherit}
+.semana-box .dia:hover{background:rgba(255,255,255,.24)}
+.semana-box .dia b{display:block;font-size:14px}
+.semana-box .dia span{font-size:12px;opacity:.9}
+.semana-box .dia.hoje{background:#fff;color:var(--vermelho)}
+.semana-box.vazia{background:#fff;color:var(--suave)}
+.semana-box.vazia h3{color:var(--suave);margin:0}
+.kcol{background:rgba(255,255,255,.55);border-radius:16px;padding:8px;min-height:160px;transition:background .15s, box-shadow .15s}
+.kcol.alvo{background:#fff;box-shadow:inset 0 0 0 2px var(--vermelho)}
+.kcol h3{display:flex;align-items:center;gap:6px;font-size:13px;text-transform:uppercase;letter-spacing:.04em;margin:2px 4px 8px}
+.kcol h3 .n{margin-left:auto;background:#fff;border-radius:999px;padding:1px 8px;font-size:12px}
+.kcol h3 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.kcol .tot{font-size:11.5px;color:var(--suave);font-weight:700;margin:-4px 4px 8px}
+.kcard{background:#fff;border-radius:12px;box-shadow:var(--sombra);padding:9px 10px;margin-bottom:8px;cursor:grab;display:grid;gap:3px;border-top:3px solid transparent;font-size:12.5px}
+.kcard.atencao{border-top-color:#e0a100;background:#fffaf0}
+.kcard.arrastando{opacity:.45}
+.kcard .t{display:flex;gap:6px;align-items:baseline}
+.kcard .t b{font-size:14px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kcard .d{color:var(--vermelho);font-weight:800}
+.kcard .s{color:var(--suave)}
+.kcard .vals{display:flex;justify-content:space-between;gap:6px;font-weight:800;margin-top:2px}
+.kcard .mover{display:flex;gap:4px;margin-top:4px}
+.kcard .mover button{flex:1;border:1px solid var(--linha);background:var(--creme);border-radius:8px;padding:5px;font-size:11.5px;font-weight:800;color:var(--vermelho)}
+@media (max-width:819px){
+  .semana-box .dia{min-width:0;flex:1 1 40%}
+  .kanban{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:86%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+  .kcol{scroll-snap-align:start}
+}
 @media (min-width:820px){ section[data-aba=novaEnc] .cd{--cd-baixo:14px} }
 
 /* Navegação inferior (celular) */
@@ -416,8 +493,10 @@ nav.baixo button.ativa{color:var(--vermelho)}
 @media print{
   body{background:#fff}
   header,nav,.no-print,.toast,.faixa-demo,.barra-carrinho{display:none!important}
-  section[data-aba]:not([data-aba=fechamento]){display:none!important}
-  section[data-aba=fechamento]{display:block!important}
+  section[data-aba].hidden{display:none!important}
+  .rel-enc{box-shadow:none!important;border:1px solid #ddd}
+  .rel-enc,.rel-prod{break-inside:avoid}
+  .rel-enc .hora,.pill{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
   main{padding:0}
 }
@@ -641,17 +720,35 @@ nav.baixo button.ativa{color:var(--vermelho)}
 
     <!-- ============ CARDÁPIO DIGITAL · ENCOMENDAS AGENDADAS ============ -->
     <section data-aba="encomendas" class="hidden">
+      <div class="semana-box" id="semanaEnc"></div>
       <div class="card enc-topo">
         <div class="info"><b>🔗 Link do Cardápio Digital para os clientes</b><div class="link" id="linkCardapio"></div></div>
         <button class="btn sec" id="copiarLink">Copiar link</button>
         <a class="btn sec" id="zapLink" target="_blank" rel="noopener" style="text-decoration:none">💬 Enviar</a>
+        <button class="btn sec" data-ir="relEnc">🧾 Relatório do dia</button>
         <button class="btn" data-ir="novaEnc">+ Nova encomenda</button>
       </div>
       <h2 class="enc-titulo">Encomendas agendadas</h2>
       <div class="resumo" id="resumoEnc"></div>
-      <div class="chips" id="chipsEnc" style="margin-bottom:6px"></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
+        <div class="chips" id="chipsEnc"></div>
+        <div class="chips vista" id="vistaEnc"><button class="chip" data-vista="quadro">▦ Quadro</button><button class="chip" data-vista="lista">☰ Lista</button></div>
+      </div>
       <div class="filtros" style="margin-top:6px"><div class="busca">🔍<input type="text" id="buscaEnc" placeholder="Buscar por cliente, tema, bairro…"></div></div>
+      <div id="quadroEnc" class="kanban"></div>
       <div id="listaEnc"></div>
+    </section>
+
+    <!-- ============ RELATÓRIO DO DIA (encomendas da mais cedo para a mais tarde) ============ -->
+    <section data-aba="relEnc" class="hidden" style="max-width:900px;margin:0 auto">
+      <div class="periodo no-print">
+        <div class="nav"><button id="relAnt" aria-label="Dia anterior">‹</button><span id="relLabel"></span><button id="relProx" aria-label="Próximo dia">›</button></div>
+        <input type="date" id="relData" style="width:auto">
+        <button class="btn sec" id="relHoje" style="padding:9px 14px">Hoje</button>
+        <button class="btn sec" id="relImprimir" style="padding:9px 14px;margin-left:auto">🖨 Imprimir / PDF</button>
+      </div>
+      <div class="card bloco no-print" id="relCal"></div>
+      <div id="relConteudo"></div>
     </section>
 
     <!-- ============ NOVA ENCOMENDA (mesmo cardápio do cliente) ============ -->
@@ -992,6 +1089,14 @@ function aplicarEncomenda(e, op) {
         k.sinalPago = v === null ? null : arred(v);
       }
       if (op.nota !== undefined) k.nota = cTxt(op.nota, 500);
+      // Entrada (sinal): marcar como paga muda a etapa para "Sinal pago"; desmarcar volta para "Confirmado"
+      if (op.entradaPaga === true) {
+        if (!(k.sinalPago > 0)) throw new Error("Digite o valor da entrada");
+        if (k.status === "novo" || k.status === "confirmado") k.status = "sinal";
+      } else if (op.entradaPaga === false) {
+        k.sinalPago = null;
+        if (k.status === "sinal") k.status = op.status === "novo" ? "novo" : "confirmado";
+      }
       if (op.festa !== undefined) { if (!/^\d{4}-\d{2}-\d{2}$/.test(op.festa)) throw new Error("Data inválida"); k.festa = op.festa; }
       if (op.horario !== undefined) k.horario = cTxt(op.horario, 10);
       k.historico.push({ em: agora, txt: "Encomenda atualizada" });
@@ -1449,7 +1554,7 @@ function produtosOrdenados() {
    DESENHAR TELAS
    ===================================================================== */
 function render() {
-  mostrarUltimoBackup(); renderInicio(); renderEncomendas(); renderVendas(); renderEstoque(); renderMovForm(); renderHist(); renderFechamento(); renderConsolidado(); renderProd();
+  mostrarUltimoBackup(); renderInicio(); renderEncomendas(); renderRelEnc(); renderVendas(); renderEstoque(); renderMovForm(); renderHist(); renderFechamento(); renderConsolidado(); renderProd();
 }
 
 /* ---------------- VENDAS ---------------- */
@@ -1749,6 +1854,22 @@ function periodo(tipo, offset) {
   return { ini, fim, label };
 }
 
+// Encomendas do Cardápio Digital que já foram ENTREGUES contam como venda, na data da festa
+const PAG_ENC = { "Pix": "pix", "Dinheiro": "dinheiro", "Cartão de débito": "debito", "Cartão de crédito": "credito" };
+function encomendasFaturadas() {
+  return estado.encomendas.filter((k) => k.status === "entregue").map((k) => {
+    const total = encValor(k), conhecidos = k.itens.reduce((t, i) => t + (i.preco || 0), 0);
+    const nCons = k.itens.filter((i) => i.consultar).length, dif = total - conhecidos;
+    const itens = k.itens.map((i) => {
+      let valor = i.preco || 0;
+      if (nCons) { if (i.consultar) valor = dif / nCons; } else if (conhecidos) valor += dif * (valor / conhecidos);
+      return { prodId: "enc:" + i.cat + ":" + i.nome, nome: i.nome, cat: i.cat, qtd: i.qtd, valor: r2c(valor) };
+    });
+    const d = new Date(k.festa + "T12:00:00");
+    return { enc: k, data: d, iso: d.toISOString(), total, pagamento: PAG_ENC[k.pagamento] || "outro", itens };
+  });
+}
+
 function relatorio(ini, fim) {
   const a = ini.toISOString(), b = fim.toISOString();
   const dentro = (iso) => iso >= a && iso < b;
@@ -1784,8 +1905,15 @@ function relatorio(ini, fim) {
       alvo.qtd += m.qtd; alvo.valor += val;
     }
   }
-  R.faturamento = r2c(R.vendasCaixa + R.avulso);
-  R.ticket = R.nVendas ? R.vendasCaixa / R.nVendas : 0;
+  // encomendas entregues no período
+  R.listaEnc = encomendasFaturadas().filter((x) => dentro(x.iso)).sort((x, y) => x.iso.localeCompare(y.iso));
+  R.nEnc = R.listaEnc.length; R.valorEnc = 0;
+  for (const x of R.listaEnc) {
+    R.valorEnc += x.total; R.porPag[x.pagamento] = (R.porPag[x.pagamento] || 0) + x.total;
+    for (const i of x.itens) addProd(i.prodId, i.nome, i.cat, i.qtd, i.valor);
+  }
+  R.faturamento = r2c(R.vendasCaixa + R.avulso + R.valorEnc);
+  R.ticket = R.nVendas + R.nEnc ? (R.vendasCaixa + R.valorEnc) / (R.nVendas + R.nEnc) : 0;
   R.listaEfetivadas = [...vendas].sort((x, y) => x.data.localeCompare(y.data));
   R.listaCanceladas = listaCanceladas;
   R.totalCanceladas = r2c(listaCanceladas.reduce((s, v) => s + v.total, 0));
@@ -1803,6 +1931,7 @@ function relatorio(ini, fim) {
   // dias com venda (trabalhados) e folgas marcadas no período
   const diasVenda = new Set(vendas.map((v) => diaKey(new Date(v.data))));
   for (const m of movs) if (m.movimento === "saida" && (m.motivo || "venda") === "venda") diasVenda.add(diaKey(new Date(m.data)));
+  for (const x of R.listaEnc) diasVenda.add(x.enc.festa);
   R.trabalhados = diasVenda.size;
   R.folgas = (estado.folgas || []).filter((f) => f.data >= diaKey(ini) && f.data < diaKey(fim)).length;
   R.mediaDia = R.trabalhados ? R.faturamento / R.trabalhados : 0;
@@ -1852,7 +1981,7 @@ function renderFechamento() {
   $("#relatorio").innerHTML = topo + `
     <div class="resumo">
       <div class="card"><b class="num">${brl(R.faturamento)}</b><span>Faturamento</span>${comp}</div>
-      <div class="card"><b class="num">${R.nVendas}</b><span>Vendas efetivadas</span><em class="${R.canceladas ? "desce" : ""}" style="${R.canceladas ? "" : "color:var(--suave)"}">${R.canceladas} cancelada(s)</em></div>
+      <div class="card"><b class="num">${R.nVendas}</b><span>Vendas efetivadas</span><em class="${R.canceladas ? "desce" : ""}" style="${R.canceladas ? "" : "color:var(--suave)"}">${R.canceladas} cancelada(s)</em>${R.nEnc ? `<em style="color:var(--azul)">+ ${R.nEnc} encomenda${R.nEnc > 1 ? "s" : ""} · ${brl(R.valorEnc)}</em>` : ""}</div>
       <div class="card"><b class="num">${brl(R.ticket)}</b><span>Ticket médio</span></div>
       <div class="card"><b class="num">${R.itens}</b><span>Itens vendidos</span><em style="color:var(--suave)">${R.entradas} produzidos/comprados</em></div>
     </div>
@@ -1893,6 +2022,10 @@ function renderFechamento() {
       ${R.listaEfetivadas.length ? `<details ${R.listaEfetivadas.length <= 15 ? "open" : ""}><summary class="dica no-print" style="cursor:pointer">Mostrar / esconder a lista</summary>${R.listaEfetivadas.map((v) => linhaVenda(v, true, perTipo !== "dia")).join("")}</details>` : '<div class="vazio">Nenhuma venda efetivada no período.</div>'}
     </div>
 
+    <div class="card bloco"><h3>🎂 Encomendas entregues (Cardápio Digital) <span class="pill azul">${R.nEnc} · ${brl(R.valorEnc)}</span></h3>
+      ${R.listaEnc.length ? R.listaEnc.map((x) => `<div class="mov clicavel" data-enc="${x.enc.id}"><div class="info"><b>#${x.enc.numero} · ${esc(x.enc.nome)}</b><span>${dataCurta(x.data)} · ${x.enc.itens.map((i) => (i.qtd > 1 ? i.qtd + "× " : "") + esc(i.nome)).join(", ")}${x.enc.pagamento ? " · " + esc(x.enc.pagamento) : ""}</span></div><div class="valor num">${brl(x.total)}</div></div>`).join("") : '<div class="vazio">Nenhuma encomenda entregue no período.</div>'}
+    </div>
+
     <div class="card bloco"><h3>Vendas canceladas <span class="pill zero">${R.canceladas} · ${brl(R.totalCanceladas)}</span></h3>
       ${R.listaCanceladas.length ? R.listaCanceladas.map((v) => linhaVenda(v, true, perTipo !== "dia")).join("") : '<div class="vazio">Nenhuma venda cancelada no período.</div>'}
     </div>
@@ -1914,6 +2047,7 @@ function calendarioMes(P) {
   for (const m of estado.movs) if (m.movimento === "saida" && (m.motivo || "venda") === "venda") {
     const k = diaKey(new Date(m.data)); fat[k] = (fat[k] || 0) + m.qtd * (m.preco ?? prodPorId()[m.prodId]?.preco ?? 0);
   }
+  for (const x of encomendasFaturadas()) fat[x.enc.festa] = (fat[x.enc.festa] || 0) + x.total;
   const curto = (v) => v >= 1000 ? "R$" + (v / 1000).toFixed(1).replace(".", ",") + "k" : "R$" + Math.round(v);
   let html = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"].map((d) => `<div class="sem">${d}</div>`).join("");
   const vazios = (P.ini.getDay() + 6) % 7;
@@ -1963,6 +2097,7 @@ function baixarCSV() {
   L.push(["Faturamento", n(R.faturamento)]);
   L.push(["Vendas efetivadas", R.nVendas, n(R.vendasCaixa)]);
   L.push(["Vendas canceladas", R.canceladas, n(R.totalCanceladas)]);
+  L.push(["Encomendas entregues (Cardápio Digital)", R.nEnc, n(R.valorEnc)]);
   L.push(["Ticket médio", n(R.ticket)]);
   L.push(["Itens vendidos", R.itens]);
   if (perTipo !== "dia") L.push(["Dias com venda", R.trabalhados], ["Folgas", R.folgas], ["Média por dia com venda", n(R.mediaDia)]);
@@ -1985,6 +2120,8 @@ function baixarCSV() {
   };
   listaCSV("VENDAS EFETIVADAS", R.listaEfetivadas);
   listaCSV("VENDAS CANCELADAS", R.listaCanceladas);
+  L.push([]); L.push(["ENCOMENDAS ENTREGUES"]); L.push(["Data da festa", "Pedido", "Cliente", "Itens", "Pagamento", "Valor"]);
+  for (const x of R.listaEnc) L.push([x.data.toLocaleDateString("pt-BR"), "#" + x.enc.numero, x.enc.nome, x.enc.itens.map((i) => `${i.qtd}x ${i.nome}`).join(", "), x.enc.pagamento || "", n(x.total)]);
   const csv = "﻿" + L.map((l) => l.map((c) => `"${String(c ?? "").replace(/"/g, '""')}"`).join(";")).join("\r\n");
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
@@ -1994,6 +2131,14 @@ function baixarCSV() {
 
 /* ---------------- CARDÁPIO DIGITAL · ENCOMENDAS ---------------- */
 let filtroEnc = "proximas";
+let vistaEnc = ls.get("dajuh_vista_enc") || "quadro";
+// Colunas do quadro: cada coluna é uma etapa da encomenda
+const KANBAN = [
+  { status: "novo", nome: "Agendados", cor: "var(--azul)" },
+  { status: "confirmado", nome: "Pendente de depósito", cor: "var(--alerta)" },
+  { status: "sinal", nome: "Entrada paga", cor: "var(--ok)" },
+  { status: "entregue", nome: "Entregue", cor: "#7a6a6e" },
+];
 const encAtivo = (k) => k.status !== "cancelado" && k.status !== "entregue";
 const encAtencao = (k) => encAtivo(k) && k.consultar && k.valorCombinado == null;
 const encValor = (k) => (k.valorCombinado != null ? k.valorCombinado : k.total);
@@ -2025,6 +2170,12 @@ function renderEncomendas() {
   const F = { proximas: "Agendadas", atencao: "⚠️ A consultar", novo: "Novas", todas: "Todas", entregue: "Entregues", cancelado: "Canceladas" };
   $("#chipsEnc").innerHTML = Object.entries(F).map(([k, n]) => `<button class="chip${filtroEnc === k ? " ativa" : ""}" data-fenc="${k}">${n}</button>`).join("");
   const busca = $("#buscaEnc").value.trim().toLowerCase();
+  document.querySelectorAll("#vistaEnc .chip").forEach((c) => c.classList.toggle("ativa", c.dataset.vista === vistaEnc));
+  $("#chipsEnc").classList.toggle("hidden", vistaEnc === "quadro");
+  $("#quadroEnc").classList.toggle("hidden", vistaEnc !== "quadro");
+  $("#listaEnc").classList.toggle("hidden", vistaEnc === "quadro");
+  renderSemana();
+  if (vistaEnc === "quadro") { renderQuadro(busca); return; }
   let lista = filtroEnc === "proximas" ? prox : filtroEnc === "atencao" ? aten : filtroEnc === "novo" ? todas.filter((k) => k.status === "novo") : filtroEnc === "todas" ? [...todas] : todas.filter((k) => k.status === filtroEnc);
   if (busca) lista = lista.filter((k) => [k.nome, k.tema, k.bairro, k.telefone, "#" + k.numero].join(" ").toLowerCase().includes(busca));
   const asc = ["proximas", "atencao", "novo"].includes(filtroEnc);
@@ -2043,6 +2194,188 @@ function renderEncomendas() {
   }
   $("#listaEnc").innerHTML = html || `<div class="vazio">${filtroEnc === "proximas" ? "Nenhuma encomenda agendada. Envie o link do cardápio para os clientes!" : "Nenhuma encomenda aqui."}</div>`;
 }
+
+/* ---------------- RELATÓRIO DO DIA ---------------- */
+let relDia = null; // AAAA-MM-DD
+let relMes = null; // primeiro dia do mês mostrado no calendário
+
+// Calendário do mês: dias com encomenda ficam marcados; tocar no dia abre o relatório dele
+function renderRelCal() {
+  if (!relMes) { const d = new Date(relDia + "T12:00:00"); relMes = new Date(d.getFullYear(), d.getMonth(), 1); }
+  const ini = relMes, fim = new Date(ini.getFullYear(), ini.getMonth() + 1, 1);
+  const hoje = diaKey(new Date());
+  const porDia = {};
+  for (const k of estado.encomendas) if (k.status !== "cancelado") { const p = porDia[k.festa] || (porDia[k.festa] = { n: 0, aten: false }); p.n++; if (encAtencao(k)) p.aten = true; }
+  let g = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"].map((d) => `<div class="sem">${d}</div>`).join("");
+  for (let i = 0; i < (ini.getDay() + 6) % 7; i++) g += '<div class="d vazio-d"></div>';
+  let noMes = 0;
+  for (let d = new Date(ini); d < fim; d.setDate(d.getDate() + 1)) {
+    const k = diaKey(d), p = porDia[k]; if (p) noMes += p.n;
+    const cls = [p ? "tem" : "", p && p.aten ? "aten" : "", k === hoje ? "hoje" : "", k === relDia ? "sel" : ""].join(" ");
+    g += `<button type="button" class="d ${cls}" data-rel-dia="${k}">${d.getDate()}${p ? `<small>${p.n} enc.${p.aten ? " ⚠️" : ""}</small>` : ""}</button>`;
+  }
+  const nome = ini.toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
+  $("#relCal").innerHTML = `<div class="rel-cal-topo"><button type="button" data-rel-mes="-1" aria-label="Mês anterior">‹</button><b>${nome[0].toUpperCase() + nome.slice(1)} · ${noMes} encomenda${noMes === 1 ? "" : "s"}</b><button type="button" data-rel-mes="1" aria-label="Próximo mês">›</button></div>
+    <div class="calendario">${g}</div>
+    <div class="legenda"><span><i style="background:var(--rosa-2)"></i>Tem encomenda</span><span><i style="background:#ffe9a8"></i>Tem item a consultar</span><span>Toque no dia para ver e imprimir</span></div>`;
+}
+function renderRelEnc() {
+  if (!$("#relConteudo")) return;
+  if (!relDia) relDia = diaKey(new Date());
+  $("#relData").value = relDia;
+  { const d = new Date(relDia + "T12:00:00"); if (!relMes || relMes.getMonth() !== d.getMonth() || relMes.getFullYear() !== d.getFullYear()) relMes = new Date(d.getFullYear(), d.getMonth(), 1); }
+  renderRelCal();
+  const q = quandoFesta(relDia);
+  $("#relLabel").textContent = q.dif === 0 ? "Hoje" : q.dif === 1 ? "Amanhã" : q.dif === -1 ? "Ontem" : new Date(relDia + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "short", day: "2-digit", month: "2-digit" });
+  // da mais cedo para a mais tarde; sem horário vão por último
+  const ks = estado.encomendas.filter((k) => k.festa === relDia && k.status !== "cancelado")
+    .sort((a, b) => (a.horario || "99:99").localeCompare(b.horario || "99:99") || a.numero - b.numero);
+  const canc = estado.encomendas.filter((k) => k.festa === relDia && k.status === "cancelado").length;
+  let html = `<div class="rel-topo"><h2>Encomendas do dia</h2><p>${q.nome} · ${q.rel}</p></div>`;
+  if (!ks.length) { $("#relConteudo").innerHTML = html + `<div class="card vazio">Nenhuma encomenda para este dia.${canc ? ` (${canc} cancelada${canc > 1 ? "s" : ""})` : ""}</div>`; return; }
+
+  const tot = ks.reduce((t, k) => t + encValor(k), 0), ent = ks.reduce((t, k) => t + (k.sinalPago || 0), 0);
+  const aten = ks.filter(encAtencao).length;
+  html += `<div class="resumo">
+    <div class="card"><b>${ks.length}</b><span>Encomendas</span></div>
+    <div class="card"><b class="num">${brl(tot)}${aten ? " +?" : ""}</b><span>Total</span></div>
+    <div class="card"><b class="num sobe">${brl(ent)}</b><span>Entradas pagas</span></div>
+    <div class="card"><b class="num desce">${brl(r2c(tot - ent))}</b><span>Falta receber</span></div>
+  </div>`;
+
+  // Resumo de produção: soma tudo o que precisa ser feito no dia
+  const P = {};
+  const add = (cat, nome, q) => { P[cat] = P[cat] || {}; P[cat][nome] = (P[cat][nome] || 0) + q; };
+  for (const k of ks) for (const i of k.itens) {
+    if (i.cat === "Bolo") add("🎂 Bolos", `${i.nome.replace(" (sabor especial)", "")} · ${i.detalhe.replace(" · 3 camadas", "")}`, 1);
+    else if (i.cat === "Doces tradicionais" || i.cat === "Doces gourmet") {
+      const total = parseInt(i.nome, 10) || 0, sab = i.detalhe.split(", ").filter(Boolean);
+      sab.forEach((sb) => add(i.cat === "Doces gourmet" ? "✨ Doces gourmet (unidades)" : "🍬 Doces tradicionais (unidades)", sb, Math.round(total / sab.length)));
+    } else if (i.cat === "Kit Festa") {
+      add("🎉 Kit Festa", "Kits", 1);
+      const m = i.detalhe.match(/\(massa ([^;]+); ([^)]+)\)/); if (m) add("🎂 Bolos", `Bolo 15 pessoas (kit) · Massa ${m[1]} · ${m[2]}`, 1);
+      const dc = i.detalhe.match(/25 docinhos de ([^·]+)/); if (dc) add("🍬 Doces tradicionais (unidades)", dc[1].trim().replace(/^./, (c) => c.toUpperCase()), 25);
+      add("🎉 Kit Festa", "Salgadinhos", 100);
+    } else add((ICONE_CAT[i.cat] || "•") + " " + i.cat, i.nome.replace(i.cat + " ", "").replace(/^de /, ""), i.qtd);
+  }
+  const ordem = ["🎂 Bolos", "🍬 Doces tradicionais (unidades)", "✨ Doces gourmet (unidades)", "🍫 Brownie", "🧁 Cupcake", "💝 Bem casado", "🎉 Kit Festa"];
+  const cats = Object.keys(P).sort((a, b) => (ordem.indexOf(a) + 99) % 99 - (ordem.indexOf(b) + 99) % 99);
+  html += `<div class="rel-prod"><h3>Resumo de produção do dia</h3><div class="g">${cats.map((c) => `<div class="c">${c}</div>` +
+    Object.entries(P[c]).sort((a, b) => b[1] - a[1]).map(([n, q]) => `<div class="l"><span>${esc(n)}</span><b>${q}${c.includes("Bolos") || c.includes("Kit") && n === "Kits" ? "" : " un."}</b></div>`).join("")).join("")}</div></div>`;
+
+  // Encomendas em ordem de horário
+  html += `<h3 style="color:var(--vermelho);margin:4px 0 8px">Encomendas por horário</h3>` + ks.map((k) => {
+    const v = encValor(k), pg = k.sinalPago || 0;
+    return `<div class="rel-enc">
+      <div class="hora${k.horario ? "" : " sem"}">${k.horario || "—"}<small>${k.horario ? "retirada" : "sem horário"}</small></div>
+      <div class="cab"><b>#${k.numero} · ${esc(k.nome)}</b>${encAtencao(k) ? '<span class="pill atencao">⚠️ A consultar</span>' : ""}<span class="pill st-${k.status}">${STATUS_ENCOMENDA[k.status]}</span></div>
+      <div class="info">${k.tema ? "🎈 " + esc(k.tema) + " · " : ""}📞 ${esc(k.telefone)}${k.bairro ? " · 📍 " + esc(k.bairro) : ""}${k.pagamento ? " · 💳 " + esc(k.pagamento) : ""}</div>
+      <div><ul>${k.itens.map((i) => `<li>${i.qtd > 1 ? i.qtd + "× " : ""}${esc(i.nome)}${i.detalhe ? ` <span>– ${esc(i.detalhe)}</span>` : ""}</li>`).join("")}</ul>
+        ${k.obs ? `<div class="info" style="margin-top:4px">📝 ${esc(k.obs)}</div>` : ""}${k.nota ? `<div class="info">🔒 ${esc(k.nota)}</div>` : ""}</div>
+      <div class="vals"><span>Total: <b>${brl(v)}${encAtencao(k) ? " + ?" : ""}</b></span><span>Entrada: <b class="sobe">${brl(pg)}</b></span><span>Falta: <b class="${v - pg > 0 ? "desce" : "sobe"}">${v - pg > 0 ? brl(r2c(v - pg)) : "Quitado ✔"}</b></span></div>
+    </div>`;
+  }).join("") + (canc ? `<p class="dica">${canc} encomenda${canc > 1 ? "s" : ""} cancelada${canc > 1 ? "s" : ""} neste dia (não entram no relatório).</p>` : "");
+  $("#relConteudo").innerHTML = html;
+}
+const moverRel = (n) => { const d = new Date(relDia + "T12:00:00"); d.setDate(d.getDate() + n); relDia = diaKey(d); renderRelEnc(); };
+
+// Semana atual (segunda a domingo)
+function semanaAtual() {
+  const h = new Date(); h.setHours(0, 0, 0, 0);
+  const ini = new Date(h); ini.setDate(h.getDate() - ((h.getDay() + 6) % 7));
+  const fim = new Date(ini); fim.setDate(ini.getDate() + 6);
+  return { ini: diaKey(ini), fim: diaKey(fim) };
+}
+const encDaSemana = () => { const w = semanaAtual(); return estado.encomendas.filter((k) => encAtivo(k) && k.festa >= w.ini && k.festa <= w.fim); };
+
+function renderSemana() {
+  const ks = encDaSemana().sort((a, b) => a.festa.localeCompare(b.festa) || (a.horario || "").localeCompare(b.horario || ""));
+  const box = $("#semanaEnc");
+  box.classList.toggle("vazia", !ks.length);
+  if (!ks.length) { box.innerHTML = "<h3>📅 Essa semana não tem encomenda.</h3>"; return; }
+  const dias = [...new Set(ks.map((k) => k.festa))];
+  const hoje = diaKey(new Date());
+  box.innerHTML = `<h3>📅 Essa semana tem encomenda: ${dias.map((d) => new Date(d + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "long" }).replace("-feira", "")).join(", ")}</h3>
+    <div class="dias">${dias.map((d) => {
+      const doDia = ks.filter((k) => k.festa === d);
+      const nome = new Date(d + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "short", day: "2-digit", month: "2-digit" }).replace(".", "");
+      return `<button type="button" class="dia${d === hoje ? " hoje" : ""}" data-dia-enc="${d}"><b>${d === hoje ? "Hoje · " : ""}${nome}</b><span>${doDia.length} encomenda${doDia.length > 1 ? "s" : ""} · ${doDia.map((k) => esc(k.nome.split(" ")[0])).join(", ")}</span></button>`;
+    }).join("")}</div>`;
+}
+
+function renderQuadro(busca) {
+  const casa = (k) => !busca || [k.nome, k.tema, k.bairro, k.telefone, "#" + k.numero].join(" ").toLowerCase().includes(busca);
+  // 1ª coluna: entregas da semana (todas as etapas, menos entregue/cancelado)
+  const STC = { novo: "st-novo", confirmado: "st-sinal", sinal: "st-entregue" };
+  const sem = encDaSemana().filter(casa).sort((a, b) => a.festa.localeCompare(b.festa) || (a.horario || "").localeCompare(b.horario || ""));
+  const colSemana = `<div class="kcol semana" id="colSemana">
+    <h3><i style="background:var(--dourado)"></i>Entregas da semana<span class="n">${sem.length}</span></h3>
+    <div class="tot">Falta receber: ${brl(sem.reduce((t, k) => t + encValor(k) - (k.sinalPago || 0), 0))}</div>
+    ${sem.map((k) => {
+      const q = quandoFesta(k.festa), tot = encValor(k), pago = k.sinalPago || 0;
+      const nomeCol = KANBAN.find((c) => c.status === k.status)?.nome || STATUS_ENCOMENDA[k.status];
+      return `<div class="kcard${encAtencao(k) ? " atencao" : ""}" data-kid="${k.id}" data-dia="${k.festa}" style="cursor:pointer">
+        <div class="t"><b>#${k.numero} · ${esc(k.nome)}</b>${encAtencao(k) ? "<span>⚠️</span>" : ""}</div>
+        <div class="d">📅 ${new Date(k.festa + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "2-digit" })}${k.horario ? " · " + esc(k.horario) : ""} · ${q.rel}</div>
+        <div><span class="stp ${STC[k.status] || ""}">${nomeCol}</span></div>
+        <div class="vals"><span>${brl(tot)}${encAtencao(k) ? " + ?" : ""}</span>${pago ? `<span class="desce">falta ${brl(r2c(tot - pago))}</span>` : ""}</div>
+        <div class="mover"><button type="button" data-mover="${k.id}" data-para="entregue">✔ Entregue</button></div>
+      </div>`;
+    }).join("") || '<div class="vazio" style="padding:14px;font-size:12.5px">Nenhuma entrega nesta semana</div>'}
+  </div>`;
+  $("#quadroEnc").innerHTML = colSemana + KANBAN.map((col, i) => {
+    const fim = col.status === "entregue";
+    const limite = (() => { const d = new Date(); d.setDate(d.getDate() - 30); return diaKey(d); })();
+    let ks = estado.encomendas.filter((k) => k.status === col.status && casa(k) && (!fim || k.festa >= limite))
+      .sort((a, b) => (fim ? -1 : 1) * (a.festa.localeCompare(b.festa) || (a.horario || "").localeCompare(b.horario || "")));
+    const soma = ks.reduce((t, k) => t + (col.status === "sinal" ? encValor(k) - (k.sinalPago || 0) : encValor(k)), 0);
+    return `<div class="kcol${fim ? " entregue" : ""}" data-col="${col.status}">
+      <h3><i style="background:${col.cor}"></i>${col.nome}<span class="n">${ks.length}</span></h3>
+      <div class="tot">${col.status === "sinal" ? "A receber na entrega: " : fim ? "Últimos 30 dias · faturado: " : "Total: "}${brl(soma)}</div>
+      ${ks.map((k) => {
+        const q = quandoFesta(k.festa), tot = encValor(k), pago = k.sinalPago || 0;
+        return `<div class="kcard${encAtencao(k) ? " atencao" : ""}" draggable="true" data-kid="${k.id}">
+          <div class="t"><b>#${k.numero} · ${esc(k.nome)}</b>${encAtencao(k) ? '<span title="Valor a consultar">⚠️</span>' : ""}</div>
+          <div class="d">📅 ${q.nome.split(",")[1] ? q.nome.replace(/^(\w+)-feira/, "$1") : q.nome} · ${q.rel}</div>
+          ${k.tema ? `<div class="s">🎈 ${esc(k.tema)}</div>` : ""}
+          <div class="vals"><span>${brl(tot)}${encAtencao(k) ? " + ?" : ""}</span>${pago ? `<span class="sobe">entrada ${brl(pago)}</span>` : ""}</div>
+          ${pago ? `<div class="s">Falta pagar: <b class="desce">${brl(r2c(tot - pago))}</b></div>` : ""}
+          <div class="mover">${i > 0 ? `<button type="button" data-mover="${k.id}" data-para="${KANBAN[i - 1].status}">‹ ${KANBAN[i - 1].nome.split(" ")[0]}</button>` : ""}${i < KANBAN.length - 1 ? `<button type="button" data-mover="${k.id}" data-para="${KANBAN[i + 1].status}">${KANBAN[i + 1].status === "entregue" ? "✔ Entregue" : KANBAN[i + 1].nome.split(" ")[0] + " ›"}</button>` : ""}</div>
+        </div>`;
+      }).join("") || '<div class="vazio" style="padding:14px;font-size:12.5px">Nenhuma encomenda</div>'}
+    </div>`;
+  }).join("");
+}
+
+// Mover encomenda de coluna (botões ou arrastar)
+async function moverEncomenda(id, para) {
+  const k = estado.encomendas.find((x) => x.id === id); if (!k || k.status === para) return;
+  const nomeCol = KANBAN.find((c) => c.status === para)?.nome || STATUS_ENCOMENDA[para];
+  if (para === "sinal" && k.sinalPago != null) return enviar({ tipo: "statusEncomenda", id, status: "sinal" }, "Movido para Entrada paga");
+  if (para === "sinal") {
+    const sug = k.sinalPago ?? r2c(encValor(k) / 2);
+    const r = await pedirTexto(`Valor da entrada paga por ${k.nome}:`, sug.toFixed(2).replace(".", ","));
+    if (r == null) return;
+    const v = r.trim() === "" ? sug : lerValor(r);
+    if (v == null || Number.isNaN(v) || v <= 0) return toast("Valor inválido");
+    return enviar({ tipo: "editarEncomenda", id, entradaPaga: true, sinalPago: v }, `Entrada de ${brl(v)} registrada`);
+  }
+  if (para === "entregue") {
+    const falta = r2c(encValor(k) - (k.sinalPago || 0));
+    if (!(await confirmar(`Marcar #${k.numero} como entregue?${falta > 0 ? ` Falta receber ${brl(falta)}.` : ""}`))) return;
+    return enviar({ tipo: "statusEncomenda", id, status: "entregue" }, "Encomenda entregue ✔");
+  }
+  if (k.sinalPago != null && para !== "entregue" && k.status !== "entregue") {
+    if (!(await confirmar(`Tirar a entrada de ${brl(k.sinalPago)} da encomenda #${k.numero}?`))) return;
+    return enviar({ tipo: "editarEncomenda", id, entradaPaga: false, status: para }, "Movido para " + nomeCol);
+  }
+  enviar({ tipo: "statusEncomenda", id, status: para }, "Movido para " + nomeCol);
+}
+let arrastandoId = null;
+document.addEventListener("dragstart", (e) => { const c = e.target.closest && e.target.closest(".kcard"); if (!c) return; arrastandoId = c.dataset.kid; c.classList.add("arrastando"); e.dataTransfer.effectAllowed = "move"; });
+document.addEventListener("dragend", (e) => { document.querySelectorAll(".kcard.arrastando,.kcol.alvo").forEach((x) => x.classList.remove("arrastando", "alvo")); });
+document.addEventListener("dragover", (e) => { const col = e.target.closest && e.target.closest(".kcol"); if (!col || !arrastandoId) return; e.preventDefault(); document.querySelectorAll(".kcol.alvo").forEach((x) => x !== col && x.classList.remove("alvo")); col.classList.add("alvo"); });
+document.addEventListener("drop", (e) => { const col = e.target.closest && e.target.closest(".kcol"); if (!col || !arrastandoId) return; e.preventDefault(); if (!col.dataset.col) { arrastandoId = null; col.classList.remove("alvo"); return; } const id = arrastandoId; arrastandoId = null; col.classList.remove("alvo"); moverEncomenda(id, col.dataset.col); });
 
 function modalEncomenda(id) {
   const k = estado.encomendas.find((x) => x.id === id); if (!k) return;
@@ -2067,7 +2400,11 @@ function modalEncomenda(id) {
       ${k.consultar ? `<label style="margin-top:6px">⚠️ Valor total combinado com o cliente (R$)<input type="text" class="dinheiro" inputmode="decimal" id="eValor" placeholder="Ex.: ${(k.total + 100).toFixed(2).replace(".", ",")}" value="${k.valorCombinado != null ? k.valorCombinado.toFixed(2).replace(".", ",") : ""}"></label>` : ""}
       <div class="total"><span>Total</span><span class="num">${brl(final)}${encAtencao(k) ? " + ?" : ""}</span></div>
       <div><span>Sinal de 50%</span><b class="num">${brl(sinal)}</b></div>
-      <label style="margin-top:6px">Sinal recebido (R$)<input type="text" class="dinheiro" inputmode="decimal" id="eSinal" placeholder="${sinal.toFixed(2).replace(".", ",")}" value="${k.sinalPago != null ? k.sinalPago.toFixed(2).replace(".", ",") : ""}"></label>
+      <div class="entrada-box">
+        <label class="entrada-ok"><input type="checkbox" id="eEntOk" ${k.sinalPago != null ? "checked" : ""}> Entrada paga</label>
+        <input type="text" class="dinheiro" inputmode="decimal" id="eSinal" placeholder="${sinal.toFixed(2).replace(".", ",")}" value="${k.sinalPago != null ? k.sinalPago.toFixed(2).replace(".", ",") : ""}" aria-label="Valor da entrada">
+      </div>
+      <div class="falta" id="eFalta"></div>
     </div>
     <label style="margin-bottom:5px">Etapa</label>
     <div class="etapas">${Object.entries(STATUS_ENCOMENDA).map(([s, n]) => `<button type="button" data-etapa="${s}" class="${k.status === s ? "ativa" : ""}">${n}</button>`).join("")}</div>
@@ -2086,9 +2423,30 @@ function modalEncomenda(id) {
     if (st === "sinal" && k.sinalPago == null) op.sinal = sinal;
     if (await enviar(op, "Etapa: " + STATUS_ENCOMENDA[st])) modalEncomenda(id);
   };
+  // Entrada: marcar o checkbox preenche 50% (se vazio); "falta pagar" é calculado na hora
+  const totalAtual = () => { const v = $("#eValor") ? valorDe("#eValor") : null; return v != null && !Number.isNaN(v) ? v : (k.valorCombinado != null ? k.valorCombinado : k.total); };
+  const atualizarFalta = () => {
+    const ok = $("#eEntOk").checked, ent = valorDe("#eSinal"), tot = totalAtual();
+    $("#eSinal").disabled = !ok;
+    if (Number.isNaN(ent)) return ($("#eFalta").innerHTML = '<span class="desce">Valor da entrada inválido</span>');
+    const pago = ok ? ent || 0 : 0, falta = r2c(tot - pago);
+    $("#eFalta").innerHTML = `<div><span>Total da encomenda</span><b class="num">${brl(tot)}${encAtencao(k) && !$("#eValor")?.value ? " + ?" : ""}</b></div>
+      <div><span>Entrada paga</span><b class="num sobe">− ${brl(pago)}</b></div>
+      <div class="f"><span>Falta pagar</span><b class="num ${falta > 0 ? "desce" : "sobe"}">${falta > 0 ? brl(falta) : falta < 0 ? "Troco " + brl(-falta) : "Quitado ✔"}</b></div>`;
+  };
+  $("#eEntOk").onchange = () => {
+    if ($("#eEntOk").checked && !$("#eSinal").value) $("#eSinal").value = r2c(totalAtual() / 2).toFixed(2).replace(".", ",");
+    atualizarFalta(); if ($("#eEntOk").checked) $("#eSinal").focus();
+  };
+  $("#eSinal").oninput = atualizarFalta;
+  if ($("#eValor")) $("#eValor").oninput = atualizarFalta;
+  atualizarFalta();
+
   $("#eSalvar").onclick = async () => {
     const op = { tipo: "editarEncomenda", id, festa: $("#eFesta").value, horario: $("#eHora").value, nota: $("#eNota").value };
-    const s = valorDe("#eSinal"); if (Number.isNaN(s)) return toast("Confira o valor do sinal"); op.sinalPago = s;
+    const ok = $("#eEntOk").checked, s = valorDe("#eSinal");
+    if (ok && (s == null || Number.isNaN(s) || s <= 0)) return toast("Digite o valor da entrada");
+    op.entradaPaga = ok; op.sinalPago = ok ? s : null;
     if ($("#eValor")) { const v = valorDe("#eValor"); if (Number.isNaN(v)) return toast("Confira o valor combinado"); op.valorCombinado = v; }
     if (await enviar(op, "Encomenda salva")) modalEncomenda(id);
   };
@@ -2119,7 +2477,15 @@ function ajustarInicio() {
   if (!sec || aba !== "inicio") return;
   const topo = document.querySelector("header").getBoundingClientRect().bottom;
   const nav = $("#abasBaixo"), alturaNav = getComputedStyle(nav).display === "none" ? 0 : nav.offsetHeight;
-  sec.style.height = Math.max(320, window.innerHeight - topo - alturaNav - 20) + "px";
+  const altura = Math.max(320, window.innerHeight - topo - alturaNav - 20);
+  sec.style.height = altura + "px";
+  // no computador, diminui o círculo de botões até caber na altura e na largura da tela
+  const roda = $("#roda");
+  if (window.innerWidth >= 820) {
+    const k = Math.min(1, (altura - 10) / 640, (window.innerWidth - 40) / 800);
+    roda.style.transform = k < 1 ? `scale(${k})` : "";
+    sec.style.overflow = "hidden";
+  } else { roda.style.transform = ""; sec.style.overflow = ""; }
 }
 window.addEventListener("resize", ajustarInicio);
 function renderInicio() {
@@ -2164,6 +2530,7 @@ function vendasEfetivas() {
     const p = mapa[m.prodId], val = m.qtd * (m.preco ?? p?.preco ?? 0);
     L.push({ data: new Date(m.data), total: val, pagamento: "semCaixa", itens: [{ prodId: m.prodId, nome: p?.nome || "(removido)", cat: p?.cat || "—", qtd: m.qtd, valor: val }] });
   }
+  for (const x of encomendasFaturadas()) L.push({ data: x.data, total: x.total, pagamento: x.pagamento, itens: x.itens, encomenda: true });
   return L;
 }
 
@@ -2381,7 +2748,7 @@ function modalProduto(id) {
 function irPara(id) {
   aba = id;
   const a = ABAS.find((x) => x.id === id);
-  $("#tituloPag").textContent = a ? a.nome : ({ config: "Configurações", novaEnc: "Nova encomenda" }[id] || "");
+  $("#tituloPag").textContent = a ? a.nome : ({ config: "Configurações", novaEnc: "Nova encomenda", relEnc: "Relatório do dia" }[id] || "");
   $("#btnMenu").classList.toggle("hidden", id === "inicio");
   document.body.classList.toggle("na-inicio", id === "inicio");
   setTimeout(ajustarInicio, 0);
@@ -2396,7 +2763,7 @@ $("#abasBaixo").innerHTML = ABAS_BAIXO.map((id) => {
 }).join("");
 
 document.addEventListener("click", async (e) => {
-  const t = e.target.closest("[data-ir],[data-entrada],[data-saida],[data-abrir],[data-apagar-mov],[data-editar],[data-filtro],[data-add],[data-cq],[data-pag],[data-vc],[data-cancelar-venda],[data-motivo],[data-folga],[data-ir-dia],[data-cons-ano],[data-cons-mes],[data-enc],[data-fenc]");
+  const t = e.target.closest("[data-ir],[data-entrada],[data-saida],[data-abrir],[data-apagar-mov],[data-editar],[data-filtro],[data-add],[data-cq],[data-pag],[data-vc],[data-cancelar-venda],[data-motivo],[data-folga],[data-ir-dia],[data-cons-ano],[data-cons-mes],[data-enc],[data-fenc],[data-kid],[data-mover],[data-vista],[data-dia-enc],[data-rel-dia],[data-rel-mes]");
   if (!t) return;
   const d = t.dataset;
   if (d.ir) irPara(d.ir);
@@ -2425,6 +2792,16 @@ document.addEventListener("click", async (e) => {
     if (ehFolga(k)) enviar({ tipo: "desmarcarFolga", data: k }, "Folga desmarcada");
     else enviar({ tipo: "marcarFolga", data: k }, "Dia marcado como folga 🌙");
   }
+  else if (d.relDia) { relDia = d.relDia; renderRelEnc(); $("#relConteudo").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  else if (d.relMes) { relMes = new Date(relMes.getFullYear(), relMes.getMonth() + Number(d.relMes), 1); renderRelCal(); }
+  else if (d.diaEnc) {
+    if (vistaEnc !== "quadro") { vistaEnc = "quadro"; renderEncomendas(); }
+    const col = $("#colSemana"); col.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    col.querySelectorAll(`[data-dia="${d.diaEnc}"]`).forEach((c) => { c.style.outline = "3px solid var(--dourado)"; setTimeout(() => (c.style.outline = ""), 1800); });
+  }
+  else if (d.mover) moverEncomenda(d.mover, d.para);
+  else if (d.kid) modalEncomenda(d.kid);
+  else if (d.vista) { vistaEnc = d.vista; ls.set("dajuh_vista_enc", vistaEnc); renderEncomendas(); }
   else if (d.enc) modalEncomenda(d.enc);
   else if (d.fenc) { filtroEnc = d.fenc; renderEncomendas(); }
   else if (d.consAno) { consAno = Number(d.consAno); renderConsolidado(); }
@@ -2499,6 +2876,11 @@ function sair() {
 $("#sair").onclick = (e) => { e.preventDefault(); sair(); };
 $("#btnBackup").onclick = baixarBackup;
 $("#buscaEnc").oninput = renderEncomendas;
+$("#relAnt").onclick = () => moverRel(-1);
+$("#relProx").onclick = () => moverRel(1);
+$("#relHoje").onclick = () => { relDia = diaKey(new Date()); renderRelEnc(); };
+$("#relData").onchange = () => { if ($("#relData").value) { relDia = $("#relData").value; renderRelEnc(); } };
+$("#relImprimir").onclick = () => window.print();
 $("#copiarLink").onclick = async () => { try { await navigator.clipboard.writeText(linkCardapio()); toast("Link copiado"); } catch { await pedirTexto("Copie o link:", linkCardapio()); } };
 $("#btnRestaurar").onclick = () => { $("#arqRestaurar").value = ""; $("#arqRestaurar").click(); };
 $("#arqRestaurar").onchange = (e) => { const f = e.target.files[0]; if (f) restaurarBackup(f); };
