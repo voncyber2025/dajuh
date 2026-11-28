@@ -1,62 +1,15 @@
-// API do controle de estoque – Da Juh Confeitaria
-// Guarda tudo num banco Redis (Upstash) ligado ao projeto na Vercel.
-import { PRODUTOS_INICIAIS } from "../lib/seed.js";
-import { aplicar, estadoInicial, normalizar } from "../lib/regras.js";
+// API do sistema (estoque, vendas, caixa, encomendas) – Da Juh Confeitaria
+// Protegida pela senha (variável SENHA na Vercel).
+import { aplicar } from "../lib/regras.js";
+import { aplicarEncomenda } from "../lib/cardapio.js";
+import { carregar, alterar, erroConfig } from "../lib/db.js";
 
-const KEY = "dajuh:estoque";
-const KEY_VER = "dajuh:estoque:versao";
-
-// Procura as chaves do banco com qualquer prefixo (KV_, STORAGE_, UPSTASH_REDIS_...)
-function acharVar(...finais) {
-  for (const fim of finais) {
-    const nome = Object.keys(process.env).find((k) => k.endsWith(fim) && process.env[k]);
-    if (nome) return process.env[nome];
-  }
-  return undefined;
-}
-const REDIS_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || acharVar("_REST_API_URL", "_REDIS_REST_URL", "_REST_URL");
-const REDIS_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || acharVar("_REST_API_TOKEN", "_REDIS_REST_TOKEN", "_REST_TOKEN");
 const SENHA = process.env.SENHA;
-
-async function redis(cmd) {
-  const r = await fetch(REDIS_URL, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${REDIS_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(cmd),
-  });
-  const j = await r.json();
-  if (j.error) throw new Error(j.error);
-  return j.result;
-}
-
-async function carregar() {
-  const [raw, ver] = await Promise.all([redis(["GET", KEY]), redis(["GET", KEY_VER])]);
-  return { estado: raw ? normalizar(JSON.parse(raw)) : estadoInicial(PRODUTOS_INICIAIS), versao: ver || "0" };
-}
-
-// Grava só se ninguém gravou no meio do caminho (evita perder dados com 2 aparelhos ao mesmo tempo)
-const LUA = `
-local atual = redis.call('GET', KEYS[2]) or '0'
-if atual == ARGV[1] then
-  redis.call('SET', KEYS[1], ARGV[2])
-  redis.call('SET', KEYS[2], ARGV[3])
-  return 1
-end
-return 0`;
-
-async function gravar(estado, versaoAnterior) {
-  const nova = String(Number(versaoAnterior) + 1);
-  const ok = await redis(["EVAL", LUA, "2", KEY, KEY_VER, versaoAnterior, JSON.stringify(estado), nova]);
-  return ok === 1 ? nova : null;
-}
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
-  if (!REDIS_URL || !REDIS_TOKEN) {
-    // Mostra só os NOMES das variáveis encontradas (nunca os valores), para ajudar a achar o problema
-    const nomes = Object.keys(process.env).filter((k) => /KV|REDIS|UPSTASH|STORAGE|SENHA/i.test(k)).sort();
-    return res.status(500).json({ erro: "Banco de dados não configurado na Vercel (Upstash Redis). Variáveis encontradas: " + (nomes.join(", ") || "nenhuma") + ". Se você acabou de conectar o banco, faça o Redeploy." });
-  }
+  const erro = erroConfig();
+  if (erro) return res.status(500).json({ erro });
   if (!SENHA) return res.status(500).json({ erro: "Configure a variável SENHA na Vercel." });
   if (req.headers["x-senha"] !== SENHA) return res.status(401).json({ erro: "Senha incorreta" });
 
@@ -67,16 +20,13 @@ export default async function handler(req, res) {
     }
     if (req.method === "POST") {
       const op = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-      for (let tentativa = 0; tentativa < 5; tentativa++) {
-        const { estado, versao } = await carregar();
-        const novo = aplicar(estado, op);
-        const v = await gravar(novo, versao);
-        if (v) return res.status(200).json({ estado: novo, versao: v });
-      }
-      return res.status(409).json({ erro: "Muitas alterações ao mesmo tempo. Tente de novo." });
+      const { estado, versao } = await alterar((e) => {
+        if (aplicarEncomenda(e, { ...op, origem: "sistema" }) === undefined) aplicar(e, op);
+      });
+      return res.status(200).json({ estado, versao });
     }
     return res.status(405).json({ erro: "Método não permitido" });
   } catch (err) {
-    return res.status(400).json({ erro: err.message });
+    return res.status(err.status || 400).json({ erro: err.message });
   }
 }

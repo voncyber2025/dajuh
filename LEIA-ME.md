@@ -7,6 +7,11 @@ Sistema de estoque, vendas e caixa que funciona no celular e no computador. Os d
 - `index.html` – a tela do sistema
 - `api/estoque.js` – o "servidor" que lê e grava os dados
 - `lib/regras.js` – as regras do sistema (vendas, caixa, folgas…)
+- `cardapio.html` – o Cardápio Digital que o cliente abre
+- `api/pedido.js` – recebe os pedidos dos clientes (sem senha, só cria encomendas)
+- `lib/cardapio.js` – itens, preços e regras do cardápio
+- `lib/db.js` – acesso ao banco de dados
+- `vercel.json` – faz o endereço /cardapio funcionar
 - `lib/seed.js` – os 56 produtos do cardápio, carregados no primeiro acesso
 - `package.json` – configuração do projeto
 
@@ -26,6 +31,9 @@ Abra o endereço do site (algo como `seu-projeto.vercel.app`), digite a senha e 
 
 ## Como usar
 
+- **Cardápio Digital (para os clientes):** o link é `seu-site.vercel.app/cardapio` (aparece na página Cardápio Digital do sistema, com botões para copiar e enviar). O cliente informa data da festa, tema, nome, telefone e bairro, monta o pedido por categoria (Bolo, Doces tradicionais, Doces gourmet, Brownie, Cupcake, Bem casado, Kit Festa) e envia. O pedido fica salvo e o WhatsApp da Juliana abre com o resumo. Recheios especiais aparecem como **⚠️ a consultar**.
+- **Encomendas agendadas (no sistema):** lista por data da festa, com ⚠️ nas que têm valor a consultar. Toque na encomenda para ver os itens por categoria, informar o valor combinado, o sinal recebido, mudar a etapa (Novo → Confirmado → Sinal pago → Entregue, ou Cancelado) e mandar o resumo ao cliente no WhatsApp. O botão **+ Nova encomenda** abre o mesmo cardápio para a Juliana lançar um pedido.
+- Preços e sabores do cardápio ficam em `lib/cardapio.js`. O número do WhatsApp da Juliana também (`WHATSAPP_JULIANA`).
 - **Menu (página inicial):** ao entrar aparece o menu. No computador, o logo da Da Juh no centro com os botões em volta; no celular, botões grandes em grade. Em todas as páginas, o botão **☰ Menu** no topo volta para ele.
 - **Consolidado:** painel de faturamento com filtros de ano e mês (pode marcar vários meses): faturamento, vendas, ticket médio, itens, canceladas, evolução mês a mês, participação por categoria, faturamento por produto, formas de pagamento e Top 3.
 - **Vendas:** abra o caixa informando o troco inicial. Toque nos produtos para montar a venda, escolha a forma de pagamento (Dinheiro, Pix, Débito, Crédito ou Outro) e confirme. No dinheiro, o sistema calcula o troco. Cada venda já dá baixa no estoque. No fim do dia, toque em **Fechar caixa** e informe quanto dinheiro tem na gaveta: o sistema mostra se sobrou ou faltou.
